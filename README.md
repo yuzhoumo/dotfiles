@@ -2,7 +2,6 @@
 Forked from Mathias Bynens
 
 ## Full Installation
----
 
 ### Run the setup script
 
@@ -22,7 +21,6 @@ Menu Bar > Finder > Reorder favorites (top to bottom): home, desktop, downloads,
 ```
 
 ## Individual Components
----
 
 ### Installing applications
 
