@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
-# Install command-line tools using Homebrew.
+# Install command-line and GUI applications using Homebrew.
 
 # Make sure we’re using the latest Homebrew.
 brew update
+
+# Turn off analytics.
+brew analytics off
 
 # Upgrade any already-installed formulae.
 brew upgrade
@@ -27,7 +30,7 @@ brew install bash
 brew install bash-completion2
 
 # Switch to using brew-installed bash as default shell
-if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
+if ! grep -Fq "${BREW_PREFIX}/bin/bash" /etc/shells; then
   echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
   chsh -s "${BREW_PREFIX}/bin/bash";
 fi;
@@ -45,12 +48,6 @@ brew install openssh
 brew install screen
 brew install php
 brew install gmp
-
-# Install font tools.
-brew tap bramstein/webfonttools
-brew install sfnt2woff
-brew install sfnt2woff-zopfli
-brew install woff2
 
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
 brew install aircrack-ng
@@ -80,22 +77,51 @@ brew install xz
 
 # Install other useful binaries.
 brew install ack
-#brew install exiv2
 brew install git
-brew install git-lfs
-brew install gs
-brew install imagemagick --with-webp
-brew install lua
 brew install lynx
 brew install p7zip
 brew install pigz
-brew install pv
-brew install rename
-brew install rlwrap
-brew install ssh-copy-id
+brew install python
 brew install tree
-brew install vbindiff
+brew install youtube-dl
 brew install zopfli
+
+# Tap cask.
+brew tap homebrew/cask
+brew tap homebrew/cask-versions
+
+# Install cask applications.
+brew cask install adobe-creative-cloud
+brew cask install atom
+brew cask install bitwarden
+brew cask install brackets
+brew cask install brave-browser
+brew cask install cryptomator
+brew cask install deluge
+brew cask install discord
+brew cask install firefox
+brew cask install flux
+brew cask install imageoptim
+brew cask install insomnia
+brew cask install intellij-idea-ce
+brew cask install java
+brew cask install keka
+brew cask install libreoffice
+brew cask install lulu
+brew cask install mactex
+brew cask install mullvadvpn
+brew cask install multimc
+brew cask install oversight
+brew cask install protonvpn
+brew cask install pycharm-ce
+brew cask install signal
+brew cask install slack
+brew cask install standard-notes
+brew cask install steam
+brew cask install thunderbird
+brew cask install tor-browser
+brew cask install vlc
+brew cask install visual-studio-code
 
 # Remove outdated versions from the cellar.
 brew cleanup

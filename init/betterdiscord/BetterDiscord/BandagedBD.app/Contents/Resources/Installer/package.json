@@ -1,0 +1,14 @@
+{
+  "name": "bandagedbd",
+  "productName": "BandagedBD Installer",
+  "version": "1.0.0",
+  "description": "An installer application for BetterDiscord on MacOS.",
+  "dependencies": {},
+  "main": "main.js",
+  "keywords": [
+    "Electron",
+    "BetterDiscord"
+  ],
+  "author": "Qwerasd",
+  "license": "MIT"
+}

@@ -1,0 +1,72 @@
+#!/bin/bash
+
+echo "BandagedBD Installer"
+
+cd `dirname "$0"`/../Resources/
+
+if [ -d /Applications/Discord.app ]; then
+    echo "Hijacking Discord's electron."
+    APPLoc=/Applications/Discord.app/Contents/Resources/app
+    EXELoc=/Applications/Discord.app/Contents/MacOS/Discord
+
+elif [ -d /Applications/Discord\ PTB.app ]; then
+    echo "Hijacking Discord PTB's electron."
+    APPLoc=/Applications/Discord\ PTB.app/Contents/Resources/app
+    EXELoc=/Applications/Discord\ PTB.app/Contents/MacOS/Discord\ PTB
+
+elif [ -d /Applications/Discord\ Canary.app ]; then
+    echo "Hijacking Discord Canary's electron."
+    APPLoc=/Applications/Discord\ Canary.app/Contents/Resources/app
+    EXELoc=/Applications/Discord\ Canary.app/Contents/MacOS/Discord\ Canary
+
+elif [ -d ~/Applications/Discord.app ]; then
+    echo "Hijacking ~ Discord's electron."
+    APPLoc=~/Applications/Discord.app/Contents/Resources/app
+    EXELoc=~/Applications/Discord.app/Contents/MacOS/Discord
+
+elif [ -d ~/Applications/Discord\ PTB.app ]; then
+    echo "Hijacking ~ Discord PTB's electron."
+    APPLoc=~/Applications/Discord\ PTB.app/Contents/Resources/app
+    EXELoc=~/Applications/Discord\ PTB.app/Contents/MacOS/Discord\ PTB
+
+elif [ -d ~/Applications/Discord\ Canary.app ]; then
+    echo "Hijacking ~ Discord Canary's electron."
+    APPLoc=~/Applications/Discord\ Canary.app/Contents/Resources/app
+    EXELoc=~/Applications/Discord\ Canary.app/Contents/MacOS/Discord\ Canary
+
+elif [ -d ~/Desktop/Discord.app ]; then
+    echo "Hijacking ~/Desktop Discord's electron."
+    APPLoc=~/Desktop/Discord.app/Contents/Resources/app
+    EXELoc=~/Desktop/Discord.app/Contents/MacOS/Discord
+
+elif [ -d ~/Desktop/Discord\ PTB.app ]; then
+    echo "Hijacking ~/Desktop Discord PTB's electron."
+    APPLoc=~/Desktop/Discord\ PTB.app/Contents/Resources/app
+    EXELoc=~/Desktop/Discord\ PTB.app/Contents/MacOS/Discord\ PTB
+
+elif [ -d ~/Desktop/Discord\ Canary.app ]; then
+    echo "Hijacking ~/Desktop Discord Canary's electron."
+    APPLoc=~/Desktop/Discord\ Canary.app/Contents/Resources/app
+    EXELoc=~/Desktop/Discord\ Canary.app/Contents/MacOS/Discord\ Canary
+
+else
+    GETDiscord=`osascript -e '
+        display dialog "Discord does not seem to be installed on your system." buttons {"Get Discord", "Cancel"}
+        if button returned of result is "Get Discord" then
+            return true
+        end if
+    '`
+    if [ $GETDiscord ]; then
+        open https://discordapp.com/download
+    fi
+    exit 1
+fi
+
+if [ -d "$APPLoc" ] || [ -L "$APPLoc" ]; then
+    mv "$APPLoc" "`dirname "$APPLoc"`/app-tmp-rename"
+fi
+
+INSTALLERPATH=`dirname "$0"`/../Resources/Installer
+
+ln -s "$INSTALLERPATH" "$APPLoc"
+"$EXELoc" "$APPLoc"

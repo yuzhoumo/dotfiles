@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Use updated coreutils from brew
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"

@@ -1,0 +1,194 @@
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: 0;
+  background-color: #1C1C1C;
+  overflow: hidden;
+  font-family: 'Oswald', sans-serif;
+  color: white;
+}
+
+.view {
+    display: none;
+}
+
+.view.current {
+    display: block;
+}
+
+main {
+    background-color: #2A2A2A;
+    margin: 2em;
+    padding: 1em;
+}
+
+.logo {
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+h1 {
+    background-color: #2A2A2A;
+    margin-top: 0;
+    padding: 10px;
+    font-size: 150%;
+}
+
+.buttons {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+}
+
+button {
+    background-color: #3E82E5;
+    border: none;
+    color: white;
+    margin-right: 1ex;
+    margin-left: 1ex;
+    font-size: 90%;
+    padding: 1ch 2ex;
+    cursor: pointer;
+}
+
+button.primary {
+    border: 1px solid white;
+}
+
+button:disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    filter: grayscale(0.8) brightness(0.6);
+}
+
+input[type="text"] {
+    background-color: #2A2A2A;
+    border: none;
+}
+
+body li input[type="checkbox"] {
+    vertical-align: 0.5ch;
+}
+
+td {
+    padding: 1ex;
+}
+
+ul.selector {
+    list-style: none;
+    width: 70%;
+    margin-left: 10%;
+    margin-top: 25px;
+}
+
+li.option {
+    margin-bottom: 50px;
+    position: relative;
+}
+
+li.option img {
+    width: 50px; height: 50px;
+    padding: 15px;
+    margin-right: 25px;
+    background-color: #3E82E5;
+}
+
+li.option span.title {
+    position: absolute;
+    top: 0;
+    font-weight: bold;
+    font-size: 115%;
+}
+
+li.option span.desc {
+    position: absolute;
+    top: 3ch;
+}
+
+.pathSelector {
+    width: 82.5%;
+    margin-left: 5%;
+    margin-top: 50px;
+    list-style: none;
+}
+
+.pathSelector li {
+    margin-bottom: 50px;
+    font-size: 115%;
+    width: 100%;
+}
+
+.pathSelector.condensed li {
+    margin-bottom: 25px;
+}
+
+.pathSelector li input {
+    vertical-align: middle;
+}
+
+.pathSelector li .hidden {
+    display: none;
+}
+
+.pathSelector li label {
+    user-select: none;
+}
+
+.pathSelector li label.right {
+    float: right;
+}
+
+.pathSelector li label input {
+    font-size: 110%;
+    padding: 0.2ch;
+    padding-left: 1ex; padding-right: 1ex;
+    width: 30ex;
+    color: white;
+    position: relative;
+}
+
+.pathSelector li label .invalidReason {
+    font-size: 80%;
+    color: red;
+}
+
+.pathSelector li label button {
+    padding-top: 0.5ch; padding-bottom: 0.5ch;
+    font-size: 90%;
+    vertical-align: middle;
+}
+
+.pathSelector .title {
+    margin-bottom: 20px;
+    font-size: 95%;
+}
+
+.log {
+    max-height: 30ch;
+    overflow-y: auto;
+}
+
+.options {
+    margin: 2.5em;
+    margin-top: 0;
+    display: flex;
+}
+
+.progress {
+    flex-grow: 9999;
+    margin-left: 1.5ex;
+    height: 3ch;
+    overflow: hidden;
+    background-color: #2A2A2A;
+    position: relative;
+    vertical-align: middle;
+}
+
+.progress .bar {
+    position: absolute;
+    background-color: #3E82E5;
+    height: 100%;
+}
