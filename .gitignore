@@ -13,8 +13,19 @@ Thumbs.db
 .Spotlight-V100
 .Trashes
 
-# Other files
-.extra
-init/betterdiscord/BetterDiscord
+# BetterDiscord GUI installer
+init/betterdiscord/BetterDiscord/BandagedDB.app
+
+# BetterDiscord "app" folder replacement
+init/betterdiscord/BetterDiscord/app
+
+# BetterDiscord plugin and theme folders
+init/betterdiscord/BetterDiscord/plugins
+init/betterdiscord/BetterDiscord/themes
+
+# Browser Application Support folders
 init/ungoogled-chromium/Chromium
 init/firefox/Firefox
+
+# Extra settings
+.extra
