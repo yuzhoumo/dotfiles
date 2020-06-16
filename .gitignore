@@ -15,6 +15,6 @@ Thumbs.db
 
 # Other files
 .extra
-init/betterdiscord/BandagedBD.app
-init/brave/BraveSoftware
-init/firefox/firefox
+init/betterdiscord/BetterDiscord
+init/ungoogled-chromium/Chromium
+init/firefox/Firefox

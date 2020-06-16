@@ -19,7 +19,7 @@ sh init/python.sh
 
 # Configure Browsers
 sh init/firefox/firefox.sh
-sh init/brave/brave.sh
+sh init/ungoogled-chromium/chromium.sh
 
 # Install BetterDiscord
 sh init/betterdiscord/betterdiscord.sh

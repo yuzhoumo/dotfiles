@@ -95,10 +95,10 @@ brew cask install adobe-creative-cloud
 brew cask install atom
 brew cask install bitwarden
 brew cask install brackets
-brew cask install brave-browser
 brew cask install cryptomator
 brew cask install deluge
 brew cask install discord
+brew cask install eloston-chromium
 brew cask install firefox
 brew cask install flux
 brew cask install imageoptim
