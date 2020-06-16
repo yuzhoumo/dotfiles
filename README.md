@@ -3,6 +3,8 @@ Forked from Mathias Bynens
 
 ## Full Installation
 
+Important: Firefox and Chromium Application Support folders must be provided in `init/firefox` and `init/ungoogled-chromium` as well as BetterDiscord files in `init/BetterDiscord` (See .gitignore for details).
+
 ### Run the setup script
 
 ```bash
