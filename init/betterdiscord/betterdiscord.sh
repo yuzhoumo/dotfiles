@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 # Install BetterDiscord
+
+echo Installing BetterDiscord...
+
 cd "$(dirname "$0")"
 
 # Silently close Discord
@@ -25,3 +28,5 @@ mkdir -p ~/Library/Preferences/BetterDiscord
 # Copy themes and plugins
 cp -r BetterDiscord/themes ~/Library/Preferences/BetterDiscord
 cp -r BetterDiscord/plugins ~/Library/Preferences/BetterDiscord
+
+echo Finished installing BetterDiscord

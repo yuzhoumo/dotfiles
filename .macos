@@ -187,27 +187,14 @@ sudo pmset -a displaysleep 15
 # Disable machine sleep while charging
 sudo pmset -c sleep 0
 
-# Set machine sleep to 5 minutes on battery
-sudo pmset -b sleep 5
-
-# Set standby delay to 24 hours (default is 1 hour)
-sudo pmset -a standbydelay 86400
-
-# Never go into computer sleep mode
-sudo systemsetup -setcomputersleep Off > /dev/null
+# Set machine sleep to 20 minutes on battery
+sudo pmset -b sleep 20
 
 # Hibernation mode
 # 0: Disable hibernation (speeds up entering sleep mode)
 # 3: Copy RAM to disk so the system state can still be restored in case of a
 #    power failure.
 sudo pmset -a hibernatemode 0
-
-# Remove the sleep image file to save disk space
-sudo rm /private/var/vm/sleepimage
-# Create a zero-byte file instead…
-sudo touch /private/var/vm/sleepimage
-# …and make sure it can’t be rewritten
-sudo chflags uchg /private/var/vm/sleepimage
 
 ###############################################################################
 # Screen                                                                      #
@@ -219,14 +206,6 @@ defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Disable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
-
-# Enable subpixel font rendering on non-Apple LCDs
-# Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
-defaults write NSGlobalDomain AppleFontSmoothing -int 1
-
-# Disable Font Smoothing Disabler in macOS Mojave
-# Reference: https://ahmadawais.com/fix-macos-mojave-font-rendering-issue/
-defaults write -g CGFontRenderingFontSmoothingDisabled -bool false
 
 # Enable HiDPI display modes (requires restart)
 sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
@@ -674,13 +653,11 @@ for app in "Activity Monitor" \
 	"cfprefsd" \
 	"Contacts" \
 	"Dock" \
-	"Finder" \
 	"Mail" \
 	"Messages" \
 	"Photos" \
 	"Safari" \
 	"SystemUIServer" \
-	"Terminal" \
 	"iCal"; do
 	killall "${app}" &> /dev/null
 done

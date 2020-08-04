@@ -10,9 +10,10 @@ alias -- -="cd -"
 # Shortcuts
 alias desk="cd ~/Desktop"
 alias dl="cd ~/Downloads"
-alais gh="cd ~/Code/github"
+alias gh="cd ~/Code/github"
 
 # Git Shortcuts
+alias g="git"
 alias ga="git add *"
 alias gc="git commit -m"
 alias gf="git fetch"

@@ -93,11 +93,6 @@ function gz() {
 	printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
 }
 
-# Run `dig` and display the most useful info
-function digga() {
-	dig +nocmd "$1" any +multiline +noall +answer;
-}
-
 # Show all the names (CNs and SANs) listed in the SSL certificate
 # for a given domain
 function getcertnames() {

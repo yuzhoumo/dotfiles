@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Import Brave Chromium settings
+# Import Chromium settings
 
 echo Importing Chromium settings...
 
