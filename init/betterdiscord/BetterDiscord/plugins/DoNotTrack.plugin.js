@@ -31,8 +31,8 @@
 
 @else@*/
 
-var DoNotTrack = (() => {
-    const config = {"info":{"name":"DoNotTrack","authors":[{"name":"Zerebos","discord_id":"249746236008169473","github_username":"rauenzi","twitter_username":"ZackRauen"}],"version":"0.0.6","description":"Stops Discord from tracking everything you do like Sentry and Analytics.","github":"https://github.com/rauenzi/BetterDiscordAddons/tree/master/Plugins/DoNotTrack","github_raw":"https://raw.githubusercontent.com/rauenzi/BetterDiscordAddons/master/Plugins/DoNotTrack/DoNotTrack.plugin.js"},"changelog":[{"title":"What's New?","items":["Clear identifying information from Sentry cache to prevent manually sending by Discord.","Kill devtools warning and manip.","Updated to match Sentry changes."]},{"title":"Fixes","type:":"fixed","items":["Fixed the plugin not loading.","Should clear game status."]}],"main":"index.js","defaultConfig":[{"type":"switch","id":"stopProcessMonitor","name":"Stop Process Monitor","note":"This setting stops Discord from monitoring the processes on your PC and prevents your currently played game from showing.","value":true}]};
+module.exports = (() => {
+    const config = {info:{name:"DoNotTrack",authors:[{name:"Zerebos",discord_id:"249746236008169473",github_username:"rauenzi",twitter_username:"ZackRauen"}],version:"0.0.6",description:"Stops Discord from tracking everything you do like Sentry and Analytics.",github:"https://github.com/rauenzi/BetterDiscordAddons/tree/master/Plugins/DoNotTrack",github_raw:"https://raw.githubusercontent.com/rauenzi/BetterDiscordAddons/master/Plugins/DoNotTrack/DoNotTrack.plugin.js"},changelog:[{title:"What's New?",items:["Clear identifying information from Sentry cache to prevent manually sending by Discord.","Kill devtools warning and manip.","Updated to match Sentry changes."]},{title:"Fixes","type:":"fixed",items:["Fixed the plugin not loading.","Should clear game status."]}],main:"index.js",defaultConfig:[{type:"switch",id:"stopProcessMonitor",name:"Stop Process Monitor",note:"This setting stops Discord from monitoring the processes on your PC and prevents your currently played game from showing.",value:true}]};
 
     return !global.ZeresPluginLibrary ? class {
         constructor() {this._config = config;}
@@ -41,25 +41,15 @@ var DoNotTrack = (() => {
         getDescription() {return config.info.description;}
         getVersion() {return config.info.version;}
         load() {
-            const title = "Library Missing";
-            const ModalStack = BdApi.findModuleByProps("push", "update", "pop", "popWithKey");
-            const TextElement = BdApi.findModuleByProps("Sizes", "Weights");
-            const ConfirmationModal = BdApi.findModule(m => m.defaultProps && m.key && m.key() == "confirm-modal");
-            if (!ModalStack || !ConfirmationModal || !TextElement) return BdApi.alert(title, `The library plugin needed for ${config.info.name} is missing.<br /><br /> <a href="https://betterdiscord.net/ghdl?url=https://raw.githubusercontent.com/rauenzi/BDPluginLibrary/master/release/0PluginLibrary.plugin.js" target="_blank">Click here to download the library!</a>`);
-            ModalStack.push(function(props) {
-                return BdApi.React.createElement(ConfirmationModal, Object.assign({
-                    header: title,
-                    children: [BdApi.React.createElement(TextElement, {color: TextElement.Colors.PRIMARY, children: [`The library plugin needed for ${config.info.name} is missing. Please click Download Now to install it.`]})],
-                    red: false,
-                    confirmText: "Download Now",
-                    cancelText: "Cancel",
-                    onConfirm: () => {
-                        require("request").get("https://rauenzi.github.io/BDPluginLibrary/release/0PluginLibrary.plugin.js", async (error, response, body) => {
-                            if (error) return require("electron").shell.openExternal("https://betterdiscord.net/ghdl?url=https://raw.githubusercontent.com/rauenzi/BDPluginLibrary/master/release/0PluginLibrary.plugin.js");
-                            await new Promise(r => require("fs").writeFile(require("path").join(ContentManager.pluginsFolder, "0PluginLibrary.plugin.js"), body, r));
-                        });
-                    }
-                }, props));
+            BdApi.showConfirmationModal("Library Missing", `The library plugin needed for ${config.info.name} is missing. Please click Download Now to install it.`, {
+                confirmText: "Download Now",
+                cancelText: "Cancel",
+                onConfirm: () => {
+                    require("request").get("https://rauenzi.github.io/BDPluginLibrary/release/0PluginLibrary.plugin.js", async (error, response, body) => {
+                        if (error) return require("electron").shell.openExternal("https://betterdiscord.net/ghdl?url=https://raw.githubusercontent.com/rauenzi/BDPluginLibrary/master/release/0PluginLibrary.plugin.js");
+                        await new Promise(r => require("fs").writeFile(require("path").join(BdApi.Plugins.folder, "0PluginLibrary.plugin.js"), body, r));
+                    });
+                }
             });
         }
         start() {}

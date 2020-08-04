@@ -1,7 +1,0 @@
-{
-    "name": "betterdiscord",
-    "description": "BetterDiscord",
-    "main": "index.js",
-    "private": true,
-    "dependencies": {}
-}

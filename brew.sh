@@ -106,6 +106,8 @@ brew cask install insomnia
 brew cask install intellij-idea-ce
 brew cask install java
 brew cask install keka
+brew cask install keepassxc
+brew cask install ledger-live
 brew cask install libreoffice
 brew cask install lulu
 brew cask install mactex
