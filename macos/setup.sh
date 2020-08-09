@@ -21,10 +21,10 @@ sh assets/ungoogled-chromium/chromium.sh
 sh assets/betterdiscord/betterdiscord.sh
 
 # Configure macOS dock
-./.dock
+sh dock.sh
 
 # Configure macOS settings
-./.macOS
+sh macos.sh
 
 # Set Wallpaper
 sh wallpaper/wallpaper.sh
