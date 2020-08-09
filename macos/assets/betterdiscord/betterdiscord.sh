@@ -13,14 +13,11 @@ killall Discord 2>/dev/null
 curl https://github.com/rauenzi/BetterDiscordApp/archive/injector.zip -O -L
 unzip injector.zip
 mv BetterDiscordApp-injector BetterDiscord/app
-rm -f BetterDiscord/app/LICENSE BetterDiscord/app/README.md
+rm -f injector.zip BetterDiscord/app/LICENSE BetterDiscord/app/README.md
 
 # Replace `app` folder
 rm -rf /Applications/Discord.app/Contents/Resources/app
-cp -r BetterDiscord/app /Applications/Discord.app/Contents/Resources
-
-# Clear Files
-rm -rf BetterDiscord/app injector.zip
+mv -r BetterDiscord/app /Applications/Discord.app/Contents/Resources
 
 # Make Preferences Directory
 mkdir -p ~/Library/Preferences/BetterDiscord

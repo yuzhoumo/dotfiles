@@ -14,18 +14,15 @@ Thumbs.db
 .Trashes
 
 # BetterDiscord GUI installer
-init/betterdiscord/BetterDiscord/BandagedDB.app
+macos/assets/betterdiscord/BetterDiscord/BandagedDB.app
 
-# BetterDiscord "app" folder replacement
-init/betterdiscord/BetterDiscord/app
+# BetterDiscord plugin and theme directories
+macos/assets/betterdiscord/BetterDiscord/plugins
+macos/assets/betterdiscord/BetterDiscord/themes
 
-# BetterDiscord plugin and theme folders
-init/betterdiscord/BetterDiscord/plugins
-init/betterdiscord/BetterDiscord/themes
-
-# Browser Application Support folders
-init/ungoogled-chromium/Chromium
-init/firefox/Firefox
+# Browser Application Support directories
+macos/assets/ungoogled-chromium/Chromium
+macos/assets/firefox/Profiles
 
 # Extra settings
 .extra
