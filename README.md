@@ -31,7 +31,7 @@ cd; curl -#L https://github.com/yuzhoumo/dotfiles/tarball/master | tar -xzv --st
 
 To update later on, just run that command again.
 
-### MacOS
+## MacOS Configuration
 
 Important: Firefox Profiles and Chromium Application Support files must be provided in `macos/assets/firefox/Profiles` and `macos/assets/ungoogled-chromium/Chromium` as well as BetterDiscord Application Support files in `macos/assets/betterdiscord/BetterDiscord`.
 
@@ -53,7 +53,7 @@ Menu Bar > Finder > Preferences > Sidebar > Uncheck recents, Uncheck iCloud Driv
 Menu Bar > Finder > Reorder favorites (top to bottom): home, desktop, downloads, applications, airdrop
 ```
 
-### Miscellaneous
+## Miscellaneous
 
 Specify the `$PATH`:
 
