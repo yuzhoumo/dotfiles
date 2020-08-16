@@ -121,3 +121,7 @@ alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+# Mirror site for offline browsing using wget
+alias mirror="wget --mirror --convert-links --adjust-extension --page-requisites --no-parent"
+
