@@ -125,3 +125,5 @@ alias path='echo -e ${PATH//:/\\n}'
 # Mirror site for offline browsing using wget
 alias mirror="wget --mirror --convert-links --adjust-extension --page-requisites --no-parent"
 
+# Download YouTube video as MP3 audio
+alias mp3="youtube-dl --extract-audio --audio-format mp3"
