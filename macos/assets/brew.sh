@@ -79,9 +79,11 @@ brew install xz
 brew install ack
 brew install git
 brew install lynx
+brew install mas
 brew install p7zip
 brew install pigz
 brew install python
+brew install sshfs
 brew install tree
 brew install youtube-dl
 brew install zopfli
@@ -92,10 +94,8 @@ brew tap homebrew/cask-versions
 
 # Install cask applications.
 brew cask install adobe-creative-cloud
-brew cask install atom
 brew cask install bitwarden
 brew cask install brackets
-brew cask install cryptomator
 brew cask install deluge
 brew cask install discord
 brew cask install eloston-chromium
@@ -113,9 +113,9 @@ brew cask install lulu
 brew cask install mactex
 brew cask install mullvadvpn
 brew cask install multimc
+brew cask install osxfuse
 brew cask install oversight
 brew cask install protonvpn
-brew cask install pycharm-ce
 brew cask install signal
 brew cask install slack
 brew cask install standard-notes
@@ -123,6 +123,7 @@ brew cask install steam
 brew cask install thunderbird
 brew cask install tor-browser
 brew cask install vlc
+brew cask install vimr
 brew cask install visual-studio-code
 
 # Remove outdated versions from the cellar.
