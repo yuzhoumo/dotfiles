@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-# Easier navigation: .., ..., ...., ....., and -
+# Easier navigation: .., ..., ...., and -
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
-alias .....="cd ../../../.."
 alias -- -="cd -"
 
 # Shortcuts
@@ -14,12 +13,10 @@ alias gh="cd ~/Code/github"
 
 # Git Shortcuts
 alias g="git"
-alias ga="git add *"
+alias ga="git add ."
 alias gc="git commit -m"
 alias gf="git fetch"
-alias gm="git merge -m"
-alias gs="git status"
-alias gt="git tag"
+alias status="git status"
 alias push="git push"
 alias pull="git pull"
 

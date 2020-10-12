@@ -4,6 +4,9 @@
 
 cd "$(dirname "$0")"
 
+# Configure macOS settings
+sh assets/macos.sh
+
 # Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
@@ -13,18 +16,8 @@ sh assets/brew.sh
 # Install python pip3 modules
 sh assets/python.sh
 
-# Configure Browsers
-sh assets/firefox/firefox.sh
-sh assets/ungoogled-chromium/chromium.sh
-
 # Install BetterDiscord
-sh assets/betterdiscord/betterdiscord.sh
+sh assets/betterdiscord.sh
 
 # Configure macOS dock
 sh dock.sh
-
-# Configure macOS settings
-sh macos.sh
-
-# Set Wallpaper
-sh wallpaper/wallpaper.sh

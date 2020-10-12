@@ -2,9 +2,6 @@
 
 # Install command-line and GUI applications using Homebrew.
 
-# Make sure we’re using the latest Homebrew.
-brew update
-
 # Turn off analytics.
 brew analytics off
 
@@ -49,41 +46,19 @@ brew install screen
 brew install php
 brew install gmp
 
-# Install some CTF tools; see https://github.com/ctfs/write-ups.
-brew install aircrack-ng
-brew install bfg
-brew install binutils
-brew install binwalk
-brew install cifer
-brew install dex2jar
-brew install dns2tcp
-brew install fcrackzip
-brew install foremost
-brew install hashpump
-brew install hydra
-brew install john
-brew install knock
-brew install netpbm
-brew install nmap
-brew install pngcheck
-brew install socat
-brew install sqlmap
-brew install tcpflow
-brew install tcpreplay
-brew install tcptrace
-brew install ucspi-tcp # `tcpserver` etc.
-brew install xpdf
-brew install xz
-
 # Install other useful binaries.
 brew install ack
+brew install ffmpeg
 brew install git
 brew install lynx
 brew install mas
+brew install node
+brew install nvm
+brew install openjdk
 brew install p7zip
 brew install pigz
+brew install postgresql
 brew install python
-brew install sshfs
 brew install tree
 brew install youtube-dl
 brew install zopfli
@@ -95,7 +70,6 @@ brew tap homebrew/cask-versions
 # Install cask applications.
 brew cask install adobe-creative-cloud
 brew cask install bitwarden
-brew cask install brackets
 brew cask install deluge
 brew cask install discord
 brew cask install eloston-chromium
@@ -103,7 +77,6 @@ brew cask install firefox
 brew cask install flux
 brew cask install imageoptim
 brew cask install insomnia
-brew cask install intellij-idea-ce
 brew cask install java
 brew cask install keka
 brew cask install keepassxc
@@ -114,8 +87,6 @@ brew cask install mactex
 brew cask install mullvadvpn
 brew cask install multimc
 brew cask install osxfuse
-brew cask install oversight
-brew cask install protonvpn
 brew cask install signal
 brew cask install slack
 brew cask install standard-notes
@@ -124,7 +95,10 @@ brew cask install thunderbird
 brew cask install tor-browser
 brew cask install vlc
 brew cask install vimr
-brew cask install visual-studio-code
+brew cask install vscodium
+
+# Install binaries with dependencies above
+brew install sshfs
 
 # Remove outdated versions from the cellar.
 brew cleanup

@@ -7,7 +7,7 @@ osascript -e 'tell application "System Preferences" to quit'
 # Ask for the administrator password upfront
 sudo -v
 
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+# Keep-alive: update existing `sudo` time stamp until `macos.sh` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Navigate to current directory
@@ -16,6 +16,10 @@ cd "$(dirname "$0")"
 ###############################################################################
 # My Extra Settings                                                           #
 ###############################################################################
+
+# Set the wallpaper
+cp wallpaper.jpg ${HOME}/Pictures/wallpaper.jpg
+osascript -e "tell application \"Finder\" to set desktop picture to \"${HOME}/Pictures/wallpaper.jpg\" as POSIX file"
 
 # Show battery percentage in menu bar
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"

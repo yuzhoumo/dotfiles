@@ -19,11 +19,4 @@ rm -f injector.zip BetterDiscord/app/LICENSE BetterDiscord/app/README.md
 rm -rf /Applications/Discord.app/Contents/Resources/app
 mv BetterDiscord/app /Applications/Discord.app/Contents/Resources
 
-# Make Preferences Directory
-mkdir -p ~/Library/Preferences/BetterDiscord
-
-# Copy themes and plugins
-cp -r BetterDiscord/themes ~/Library/Preferences/BetterDiscord
-cp -r BetterDiscord/plugins ~/Library/Preferences/BetterDiscord
-
 echo Finished installing BetterDiscord

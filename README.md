@@ -33,15 +33,13 @@ To update later on, just run that command again.
 
 ## MacOS Configuration
 
-Important: Firefox Profiles and Chromium Application Support files must be provided in `macos/assets/firefox/Profiles` and `macos/assets/ungoogled-chromium/Chromium` as well as BetterDiscord Application Support files in `macos/assets/betterdiscord/BetterDiscord`.
-
 Apply settings and install apps for macOS using the following:
 
 ```bash
 sh macos/setup.sh
 ```
 
-Manually configured settings:
+My manually configured settings:
 
 ```
 System Preferences > General > Uncheck "Allow Handoff between this Mac and your iCloud devices"
@@ -54,11 +52,5 @@ Menu Bar > Finder > Reorder favorites (top to bottom): home, desktop, downloads,
 ```
 
 ## Miscellaneous
-
-Specify the `$PATH`:
-
-If `~/.path` exists, it will be sourced along with the other files, before any feature testing takes place.
-
-Add custom commands without creating a new fork:
 
 If `~/.extra` exists, it will be sourced along with the other files.
