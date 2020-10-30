@@ -1,5 +1,4 @@
-# Joe's Dotfiles
-Forked from Mathias Bynens
+# Dotfiles
 
 ## Installation: Using Git & bootstrap script
 
