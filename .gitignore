@@ -13,16 +13,5 @@ Thumbs.db
 .Spotlight-V100
 .Trashes
 
-# BetterDiscord GUI installer
-macos/assets/betterdiscord/BetterDiscord/BandagedDB.app
-
-# BetterDiscord plugin and theme directories
-macos/assets/betterdiscord/BetterDiscord/plugins
-macos/assets/betterdiscord/BetterDiscord/themes
-
-# Browser Application Support directories
-macos/assets/ungoogled-chromium/Chromium
-macos/assets/firefox/Profiles
-
 # Extra settings
 .extra
