@@ -69,7 +69,9 @@ brew tap homebrew/cask-versions
 
 # Install cask applications.
 brew cask install adobe-creative-cloud
+brew cask install android-platform-tools
 brew cask install bitwarden
+brew cask install brave-browser
 brew cask install deluge
 brew cask install discord
 brew cask install eloston-chromium
@@ -95,7 +97,7 @@ brew cask install thunderbird
 brew cask install tor-browser
 brew cask install vlc
 brew cask install vimr
-brew cask install vscodium
+brew cask install visual-studio-code
 
 # Install binaries with dependencies above
 brew install sshfs

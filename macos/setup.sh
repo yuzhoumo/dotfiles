@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-# Full installation of dotfiles and other configurations
-
 cd "$(dirname "$0")"
 
 # Configure macOS settings
 sh assets/macos.sh
 
-# Install Homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+# Install Homebrew if it is not already installed
+if ! command -v brew &> /dev/null; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+fi
 
-# Install command-line and GUI applications
+# Install applications
 sh assets/brew.sh
 
 # Install python pip3 modules
@@ -20,4 +20,4 @@ sh assets/python.sh
 sh assets/betterdiscord.sh
 
 # Configure macOS dock
-sh dock.sh
+sh assets/dock.sh

@@ -2,7 +2,7 @@
 
 ## Installation: Using Git & bootstrap script
 
-You can clone the repository wherever you want (I prefer mine in `~/Code/github/dotfiles`). The bootstrapper script will pull in the latest version and copy the files to your home folder.
+Clone the repository and the bootstrapper script will pull in the latest version and copy the files to your home folder.
 
 ```bash
 git clone https://github.com/yuzhoumo/dotfiles.git && cd dotfiles && source bootstrap.sh

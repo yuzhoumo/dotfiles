@@ -49,7 +49,7 @@ add_app_to_dock "Firefox"
 add_app_to_dock "Thunderbird"
 add_app_to_dock "Music"
 add_app_to_dock "Ledger Live"
-add_app_to_dock "VSCodium"
+add_app_to_dock "Visual Studio Code"
 add_app_to_dock "Terminal"
 add_app_to_dock "Calendar"
 
