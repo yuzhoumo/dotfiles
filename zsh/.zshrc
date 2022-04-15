@@ -2,8 +2,9 @@
 # Plugins                                                                     #
 ###############################################################################
 
-source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.config/zsh/plugins/zsh-defer/zsh-defer.plugin.zsh
+zsh-defer source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+zsh-defer source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Configure prompt
 fpath+=$HOME/.config/zsh/plugins/pure
@@ -114,9 +115,9 @@ alias mergepdf='gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=_merged.p
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
 
 # One of @janmoesen’s ProTip™s
-#for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-#  alias "${method}"="lwp-request -m '${method}'"
-#done
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+  alias "${method}"="lwp-request -m '${method}'"
+done
 
 # Canonical hex dump; some systems have this symlinked
 command -v hd > /dev/null || alias hd="hexdump -C"
@@ -165,6 +166,9 @@ if [ $(uname -s) = 'Darwin' ]; then
   export HOMEBREW_NO_ANALYTICS=1
   export HOMEBREW_NO_INSECURE_REDIRECT=1
   export HOMEBREW_CASK_OPTS=--require-s
+
+  # Add Homebrew sbin to path
+  export PATH="/usr/local/sbin:$PATH"
 
   # Avoid issues with `gpg` as installed via Homebrew.
   # https://stackoverflow.com/a/42265848/96656
