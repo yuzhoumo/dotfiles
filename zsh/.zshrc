@@ -7,12 +7,12 @@ zsh-defer source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.z
 zsh-defer source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Configure prompt
-fpath+=$HOME/.config/zsh/plugins/pure
+fpath+=${HOME}/.config/zsh/plugins/pure
+autoload -U promptinit; promptinit
 zstyle :prompt:pure:git:stash show yes
 zstyle :prompt:pure:path color cyan
 zstyle :prompt:pure:prompt:success color green
 zstyle :prompt:pure:prompt:error color magenta
-autoload -U promptinit; promptinit
 prompt pure
 
 ###############################################################################
@@ -60,6 +60,9 @@ alias l="ls -CF"
 
 # List all files in long human readable format, excluding . and ..
 alias ll="ls -lhAF"
+
+# Rebind vim to neovim
+alias vim="nvim"
 
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage
@@ -176,6 +179,11 @@ if [ $(uname -s) = 'Darwin' ]; then
 
   # Shortcuts
   alias desk="cd ~/Desktop"
+  alias joe="cd ~/Code/joe"
+  alias ppanda="cd ~/Code/ppanda"
+  alias con="cd ~/Code/joe/configs"
+  alias editkitty="vim ~/Code/joe/dotfiles/kitty/kitty.conf"
+  alias editzsh="vim ~/Code/joe/dotfiles/.zshrc"
 
   # Hide/show all desktop icons (useful when presenting)
   alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
