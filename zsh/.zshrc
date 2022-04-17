@@ -144,7 +144,7 @@ fi;
 
 # Normalize `open` across Linux, macOS, and Windows
 if [ ! $(uname -s) = 'Darwin' ]; then
-  if grep -q Microsoft /proc/version; then
+  if grep -q microsoft /proc/version; then
     alias open='explorer.exe';
   else
     alias open='xdg-open';
