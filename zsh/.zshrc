@@ -38,8 +38,10 @@ export LESS_TERMCAP_md="${yellow}"
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr
 export PYTHONIOENCODING='UTF-8'
 
-# Add go to path
-export PATH=$HOME/go/bin:$PATH
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
 
 ###############################################################################
 # Re-Bindings and Shortcuts                                                   #
