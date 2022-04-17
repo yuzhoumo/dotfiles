@@ -4,7 +4,7 @@
 # License: GNU GPLv3
 
 macos_code_dir="${HOME}/Code"
-wsl_code_dir="${HOME}/code"
+wsl_code_dir="${HOME}/github"
 
 # Navigate to current directory
 cd "$(dirname "${0}")" || exit
