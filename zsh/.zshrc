@@ -182,6 +182,7 @@ if [ $(uname -s) = 'Darwin' ]; then
   alias joe="cd ~/Code/joe"
   alias ppanda="cd ~/Code/ppanda"
   alias con="cd ~/Code/joe/configs"
+  alias dot="cd ~/Code/joe/dotfiles"
   alias editkitty="vim ~/Code/joe/dotfiles/kitty/kitty.conf"
   alias editzsh="vim ~/Code/joe/dotfiles/.zshrc"
 
