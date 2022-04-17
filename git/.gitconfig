@@ -1,3 +1,4 @@
-[user]
-	email = 49494600+yuzhoumo@users.noreply.github.com
-	name = Joe Mo
+[includeIf "gitdir:~/Code/joe/"]
+  path = ~/.config/git/.gitconfig-joe
+[includeIf "gitdir:~/Code/ppanda/"]
+  path = ~/.config/git/.gitconfig-ppanda
