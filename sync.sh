@@ -8,7 +8,7 @@ macos_code_dir="${HOME}/Code"
 # Navigate to current directory
 cd "$(dirname "${0}")" || exit
 
-if [[ $(uname -s) = 'Darwin' ]]; then
+if [ "$(uname -s)" = 'Darwin' ]; then
   mkdir -p "${macos_code_dir}" && \
     cp editor/.editorconfig "${macos_code_dir}/.editorconfig"
 
