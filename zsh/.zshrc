@@ -185,8 +185,10 @@ if [ $(uname -s) = 'Darwin' ]; then
   alias ppanda="cd ~/Code/ppanda"
   alias con="cd ~/Code/joe/configs"
   alias dot="cd ~/Code/joe/dotfiles"
+  alias syncdot="~/Code/joe/dotfiles/sync.sh && reload"
   alias editkitty="vim ~/Code/joe/dotfiles/kitty/kitty.conf"
-  alias editzsh="vim ~/Code/joe/dotfiles/.zshrc"
+  alias editvim="vim ~/Code/joe/dotfiles/nvim/init.lua"
+  alias editzsh="vim ~/Code/joe/dotfiles/zsh/.zshrc"
 
   # Hide/show all desktop icons (useful when presenting)
   alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
