@@ -1,106 +1,127 @@
 -- Install packer
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+local install_path =
+  vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+  vim.fn.execute(
+    '!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
 end
 
 local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePost', { command = 'source <afile> | PackerCompile', group = packer_group, pattern = 'init.lua' })
 
+vim.api.nvim_create_autocmd('BufWritePost', {
+  command = 'source <afile> | PackerCompile',
+  group = packer_group, pattern = 'init.lua'
+})
+
+-- Add plugins to startup
 require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim' -- Package manager
-  use 'tpope/vim-fugitive' -- Git commands in nvim
-  use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
-  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-  use 'ludovicchabant/vim-gutentags' -- Automatic tags management
-  -- UI to select things (files, grep results, open buffers...)
-  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use 'mjlbach/onedark.nvim' -- Theme inspired by Atom
-  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
-  -- Add indentation guides even on blank lines
-  use 'lukas-reineke/indent-blankline.nvim'
-  -- Add git related info in the signs columns and popups
-  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  -- Highlight, edit, and navigate code using a fast incremental parsing library
-  use 'nvim-treesitter/nvim-treesitter'
-  -- Additional textobjects for treesitter
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
-  use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
-  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  use 'wbthomason/packer.nvim'              -- package manager
+  use 'tpope/vim-fugitive'                  -- git commands in nvim
+  use 'tpope/vim-rhubarb'                   -- fugitive-companion for github
+  use 'numToStr/Comment.nvim'               -- "gc" to comment visual regions
+  use 'ludovicchabant/vim-gutentags'        -- automatic tags management
+  use 'Mofiqul/vscode.nvim'                 -- vscode inspired theme
+  use 'nvim-lualine/lualine.nvim'           -- fancier statusline
+  use 'lukas-reineke/indent-blankline.nvim' -- add indent guides on all lines
+  use 'hrsh7th/nvim-cmp'                    -- autocompletion plugin
+  use 'L3MON4D3/LuaSnip'                    -- snippets plugin
+  use 'hrsh7th/cmp-nvim-lsp'                -- completion engine
+  use 'saadparwaiz1/cmp_luasnip'            -- luasnip completion source
+  use 'neovim/nvim-lspconfig'               -- configs for built-in LSP client
+  use 'nvim-treesitter/nvim-treesitter'     -- incremental parsing library
+  use 'nvim-treesitter/nvim-treesitter-textobjects' -- additional text objects
+  use {
+    'kyazdani42/nvim-tree.lua',       -- file tree sidebar
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+    }
+  }
+  use {
+    'lewis6991/gitsigns.nvim', -- add git related info in signs columns/popups
+    requires = {
+      'nvim-lua/plenary.nvim'
+    }
+  }
 end)
 
---Set highlight on search
+-- Set colorscheme
+vim.o.termguicolors = true
+vim.g.vscode_style = "dark"
+vim.g.vscode_italic_comment = 1
+vim.cmd [[colorscheme vscode]]
+
+-- Set indentation
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.tabstop = 4
+vim.opt.smarttab = true
+vim.opt.autoindent = true
+vim.opt.expandtab = true
+
+-- Show invisible characters
+vim.opt.list = true
+vim.opt.listchars:append("tab:▸ ")
+vim.opt.listchars:append("trail:⋅")
+vim.opt.listchars:append("eol:↴")
+vim.opt.listchars:append("nbsp:_")
+
+-- Set text width and rulers
+vim.opt.textwidth = 79
+vim.opt.colorcolumn = "+1,+31"
+
+-- Set highlight on search
 vim.o.hlsearch = false
 
---Make line numbers default
+-- Make line numbers default
 vim.wo.number = true
 
---Enable mouse mode
+-- Enable mouse mode
 vim.o.mouse = 'a'
 
---Enable break indent
+-- Enable break indent
 vim.o.breakindent = true
 
---Save undo history
+-- Save undo history
 vim.opt.undofile = true
 
---Case insensitive searching UNLESS /C or capital in search
+-- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
---Decrease update time
+-- Decrease update time
 vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
-
---Set colorscheme
-vim.o.termguicolors = true
-vim.cmd [[colorscheme onedark]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
---Set statusbar
-require('lualine').setup {
-  options = {
-    icons_enabled = false,
-    theme = 'onedark',
-    component_separators = '|',
-    section_separators = '',
-  },
-}
-
---Enable Comment.nvim
-require('Comment').setup()
-
---Remap space as leader key
+-- Remap space as leader key
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
---Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
--- Highlight on yank
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
-
---Map blankline
+-- Map blankline
 vim.g.indent_blankline_char = '┊'
 vim.g.indent_blankline_filetype_exclude = { 'help', 'packer' }
 vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
 vim.g.indent_blankline_show_trailing_blankline_indent = false
+
+-- Enable Comment.nvim
+require('Comment').setup()
+
+-- Enable nvim-tree
+require'nvim-tree'.setup()
+
+-- Set statusbar
+require('lualine').setup {
+  options = {
+    icons_enabled = false,
+    theme = 'vscode',
+    component_separators = '|',
+    section_separators = '',
+  },
+}
 
 -- Gitsigns
 require('gitsigns').setup {
@@ -113,35 +134,15 @@ require('gitsigns').setup {
   },
 }
 
--- Telescope
-require('telescope').setup {
-  defaults = {
-    mappings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
-    },
-  },
-}
-
--- Enable telescope fzf native
-require('telescope').load_extension 'fzf'
-
---Add leader shortcuts
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers)
-vim.keymap.set('n', '<leader>sf', function()
-  require('telescope.builtin').find_files { previewer = false }
-end)
-vim.keymap.set('n', '<leader>sb', require('telescope.builtin').current_buffer_fuzzy_find)
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags)
-vim.keymap.set('n', '<leader>st', require('telescope.builtin').tags)
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').grep_string)
-vim.keymap.set('n', '<leader>sp', require('telescope.builtin').live_grep)
-vim.keymap.set('n', '<leader>so', function()
-  require('telescope.builtin').tags { only_current_buffer = true }
-end)
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles)
+-- Highlight on yank
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
 
 -- Treesitter configuration
 -- Parsers must be installed manually via :TSInstall
@@ -220,7 +221,6 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-  vim.keymap.set('n', '<leader>so', require('telescope.builtin').lsp_document_symbols, opts)
   vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, {})
 end
 
@@ -313,4 +313,4 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
--- vim: ts=2 sts=2 sw=2 et
+
