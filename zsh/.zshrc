@@ -198,7 +198,7 @@ if [ $(uname -s) = 'Darwin' ]; then
 elif grep -q microsoft /proc/version; then
  
   # Retrieve Windows username and remove \r carriage return
-  username=$(/mnt/c/Windows/System32/cmd.exe /c 'echo %USERNAME%' | sed -e 's/\r//g')
+  username=$(powershell.exe /c 'echo $env:UserName' | sed -e 's/\r//g')
 
   # Shortcuts
   alias desk="cd /mnt/c/Users/${username}/Desktop"
