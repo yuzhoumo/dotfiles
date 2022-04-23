@@ -163,10 +163,11 @@ function o() {
 }
 
 ###############################################################################
-# macOS Specific                                                              #
+# OS Specific                                                                 #
 ###############################################################################
 
 if [ $(uname -s) = 'Darwin' ]; then
+
   # Homebrew security and privacy settings
   export HOMEBREW_NO_ANALYTICS=1
   export HOMEBREW_NO_INSECURE_REDIRECT=1
@@ -179,6 +180,10 @@ if [ $(uname -s) = 'Darwin' ]; then
   # https://stackoverflow.com/a/42265848/96656
   export GPG_TTY=$(tty);
 
+  # Hide/show all desktop icons (useful when presenting)
+  alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+  alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
   # Shortcuts
   alias desk="cd ~/Desktop"
   alias joe="cd ~/Code/joe"
@@ -190,7 +195,20 @@ if [ $(uname -s) = 'Darwin' ]; then
   alias editvim="vim ~/Code/joe/dotfiles/nvim/init.lua"
   alias editzsh="vim ~/Code/joe/dotfiles/zsh/.zshrc"
 
-  # Hide/show all desktop icons (useful when presenting)
-  alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-  alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+elif grep -q microsoft /proc/version; then
+ 
+  # Retrieve Windows username and remove \r carriage return
+  username=$(/mnt/c/Windows/System32/cmd.exe /c 'echo %USERNAME%' | sed -e 's/\r//g')
+
+  # Shortcuts
+  alias desk="cd /mnt/c/Users/${username}/Desktop"
+  alias joe="cd ~/github/joe"
+  alias ppanda="cd ~/github/ppanda"
+  alias con="cd ~/github/joe/configs"
+  alias dot="cd ~/github/joe/dotfiles"
+  alias syncdot="~/github/joe/dotfiles/sync.sh && reload"
+  alias editvim="vim ~/github/joe/dotfiles/nvim/init.lua"
+  alias editzsh="vim ~/github/joe/dotfiles/zsh/.zshrc"
+
 fi
+
