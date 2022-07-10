@@ -6,5 +6,5 @@ across macOS and Linux/WSL.
 ## One-line installation
 
 ```
-mkdir "${HOME}/dotfiles" && cd "${HOME}/dotfiles" && curl -#L https://github.com/yuzhoumo/dotfiles/tarball/main --silent | tar -xzv --strip-components 1 --exclude={README.md,LICENSE} && ./sync.sh
+mkdir "${HOME}/dotfiles" && curl -#L https://github.com/yuzhoumo/dotfiles/tarball/main --silent | tar -xzv --strip-components 1 --exclude={README.md,LICENSE} -C ${HOME}/dotfiles && ${HOME}/dotfiles/sync.sh && rm -rf "${HOME}/dotfiles"
 ```
