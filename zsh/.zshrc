@@ -1,10 +1,59 @@
 ###############################################################################
+# OS Specific                                                                 #
+###############################################################################
+
+if [ $(uname -s) = 'Darwin' ]; then
+
+  # Homebrew security and privacy settings
+  export HOMEBREW_NO_ANALYTICS=1
+  export HOMEBREW_NO_INSECURE_REDIRECT=1
+  export HOMEBREW_CASK_OPTS=--require-s
+
+  # Add Homebrew sbin to path
+  export PATH="/usr/local/sbin:$PATH"
+
+  # Avoid issues with `gpg` as installed via Homebrew.
+  # https://stackoverflow.com/a/42265848/96656
+  export GPG_TTY=$(tty);
+
+  # Set work directory for git repos
+  export CODE_DIR="${HOME}/Code"
+
+  # Set desktop directory
+  export DESKTOP_DIR="${HOME}/Desktop"
+
+  # Hide/show all desktop icons (useful when presenting)
+  alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+  alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+elif grep -q microsoft /proc/version; then
+
+  # Retrieve Windows username and remove \r carriage return
+  username=$(powershell.exe /c 'echo $env:UserName' | sed -e 's/\r//g')
+
+  # Set work directory for git repos
+  export CODE_DIR="${HOME}/code"
+
+  # Set desktop directory
+  export DESKTOP_DIR="/mnt/c/Users/${username}/Desktop"
+
+  # Normalize open for WSL
+  alias open="explorer.exe"
+
+else
+
+  # Normalize open for Linux
+  alias open="xdg-open"
+
+fi
+
+###############################################################################
 # Plugins                                                                     #
 ###############################################################################
 
-source ~/.config/zsh/plugins/zsh-defer/zsh-defer.plugin.zsh
-zsh-defer source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-zsh-defer source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ${HOME}/.config/zsh/plugins/zsh-defer/zsh-defer.plugin.zsh
+zsh-defer source ${HOME}/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+zsh-defer source ${HOME}/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Configure prompt
 fpath+=${HOME}/.config/zsh/plugins/pure
@@ -84,6 +133,18 @@ alias status="git status"
 alias push="git push"
 alias pull="git pull"
 
+# Desktop shortcut
+alias desk="cd ${DESKTOP_DIR}"
+
+# Code directory shortcuts
+alias joe="cd ${CODE_DIR}/joe"
+alias ppanda="cd ${CODE_DIR}/ppanda"
+alias con="cd ${CODE_DIR}/joe/configs"
+alias dot="cd ${CODE_DIR}/joe/dotfiles"
+alias syncdot="${CODE_DIR}/joe/dotfiles/sync.sh && reload"
+alias editvim="vim ${CODE_DIR}/joe/dotfiles/nvim/init.lua"
+alias editzsh="vim ${CODE_DIR}/joe/dotfiles/zsh/.zshrc"
+
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec ${SHELL} -l"
 
@@ -144,15 +205,6 @@ if [ $? -eq 0 ]; then
   }
 fi;
 
-# Normalize `open` across Linux, macOS, and Windows
-if [ ! $(uname -s) = 'Darwin' ]; then
-  if grep -q microsoft /proc/version; then
-    alias open='explorer.exe';
-  else
-    alias open='xdg-open';
-  fi
-fi
-
 # `o` with no args opens the current directory, otherwise opens given location
 function o() {
   if [ $# -eq 0 ]; then
@@ -161,54 +213,4 @@ function o() {
     open "$@";
   fi;
 }
-
-###############################################################################
-# OS Specific                                                                 #
-###############################################################################
-
-if [ $(uname -s) = 'Darwin' ]; then
-
-  # Homebrew security and privacy settings
-  export HOMEBREW_NO_ANALYTICS=1
-  export HOMEBREW_NO_INSECURE_REDIRECT=1
-  export HOMEBREW_CASK_OPTS=--require-s
-
-  # Add Homebrew sbin to path
-  export PATH="/usr/local/sbin:$PATH"
-
-  # Avoid issues with `gpg` as installed via Homebrew.
-  # https://stackoverflow.com/a/42265848/96656
-  export GPG_TTY=$(tty);
-
-  # Hide/show all desktop icons (useful when presenting)
-  alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-  alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-
-  # Shortcuts
-  alias desk="cd ~/Desktop"
-  alias joe="cd ~/Code/joe"
-  alias ppanda="cd ~/Code/ppanda"
-  alias con="cd ~/Code/joe/configs"
-  alias dot="cd ~/Code/joe/dotfiles"
-  alias syncdot="~/Code/joe/dotfiles/sync.sh && reload"
-  alias editkitty="vim ~/Code/joe/dotfiles/kitty/kitty.conf"
-  alias editvim="vim ~/Code/joe/dotfiles/nvim/init.lua"
-  alias editzsh="vim ~/Code/joe/dotfiles/zsh/.zshrc"
-
-elif grep -q microsoft /proc/version; then
- 
-  # Retrieve Windows username and remove \r carriage return
-  username=$(powershell.exe /c 'echo $env:UserName' | sed -e 's/\r//g')
-
-  # Shortcuts
-  alias desk="cd /mnt/c/Users/${username}/Desktop"
-  alias joe="cd ~/github/joe"
-  alias ppanda="cd ~/github/ppanda"
-  alias con="cd ~/github/joe/configs"
-  alias dot="cd ~/github/joe/dotfiles"
-  alias syncdot="~/github/joe/dotfiles/sync.sh && reload"
-  alias editvim="vim ~/github/joe/dotfiles/nvim/init.lua"
-  alias editzsh="vim ~/github/joe/dotfiles/zsh/.zshrc"
-
-fi
 
