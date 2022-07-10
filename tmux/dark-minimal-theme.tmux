@@ -38,4 +38,3 @@ set -g pane-border-style bg=default
 set -g pane-border-style fg="#999999"
 set -g pane-active-border-style bg=default
 set -g pane-active-border-style fg="#383838"
-
