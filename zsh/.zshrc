@@ -194,23 +194,23 @@ command -v hd > /dev/null || alias hd="hexdump -C"
 
 # Create a new directory and enter it
 function mkd() {
-  mkdir -p "$@" && cd "$_";
+  mkdir -p "$@" && cd "$_"
 }
 
 # Use Git’s colored diff when available
 hash git &>/dev/null;
 if [ $? -eq 0 ]; then
   function diff() {
-    git diff --no-index --color-words "$@";
+    git diff --no-index --color-words "$@"
   }
-fi;
+fi
 
 # `o` with no args opens the current directory, otherwise opens given location
 function o() {
   if [ $# -eq 0 ]; then
-    open .;
+    open .
   else
-    open "$@";
-  fi;
+    open "$@"
+  fi
 }
 
