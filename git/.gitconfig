@@ -10,3 +10,6 @@
 [includeIf "gitdir:~/code/ppanda/"]
   path = ~/.config/git/.gitconfig-ppanda
 
+[core]
+  excludesfile = ~/.config/git/.gitignore
+
