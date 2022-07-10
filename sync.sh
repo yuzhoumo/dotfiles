@@ -3,7 +3,7 @@
 # Author: Yuzhou "Joe" Mo (@yuzhoumo)
 # License: GNU GPLv3
 
-# Navigate to current directory
+# navigate to current directory
 cd "$(dirname "${0}")" || exit
 
 if [ "$(uname -s)" = 'Darwin' ]; then # macOS installation
@@ -38,7 +38,6 @@ mkdir -p "${CODE_DIR}" && \
 # git config
 mkdir -p "${HOME}/.config/git/" && \
   cp -r git/. "${HOME}/.config/git/." && \
-  mv "${HOME}/.config/git/.gitignore" "${HOME}/.gitignore" && \
   mv "${HOME}/.config/git/.gitconfig" "${HOME}/.gitconfig"
 
 # neovim config
