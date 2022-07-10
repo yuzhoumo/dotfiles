@@ -1,5 +1,5 @@
 # macOS
-[includeIf "gitdir:~/code/joe/"]
+[includeIf "gitdir:~/Code/joe/"]
   path = ~/.config/git/.gitconfig-joe
 [includeIf "gitdir:~/Code/ppanda/"]
   path = ~/.config/git/.gitconfig-ppanda
