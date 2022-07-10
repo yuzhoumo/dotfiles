@@ -19,3 +19,5 @@ node_modules/
 *.bak
 *.swp
 tags
+tags.temp
+tags.lock
