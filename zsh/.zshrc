@@ -213,4 +213,3 @@ function o() {
     open "$@"
   fi
 }
-
