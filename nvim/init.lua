@@ -31,22 +31,18 @@ require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig'               -- configs for built-in LSP client
   use 'nvim-treesitter/nvim-treesitter'     -- incremental parsing library
   use 'nvim-treesitter/nvim-treesitter-textobjects' -- additional text objects
-  use {
-    'kyazdani42/nvim-tree.lua',       -- file tree sidebar
-    requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icon
-    }
-  }
-  use { 'junegunn/fzf', run = './install --bin' } -- get fzf dependency
+  use { 'junegunn/fzf', run = './install --bin' }   -- get fzf dependency
   use {
     'ibhagwan/fzf-lua',
-    requires = { 'kyazdani42/nvim-web-devicons' } -- optional, for file icon
+    requires = { 'kyazdani42/nvim-web-devicons' }   -- optional, for file icon
   }
   use {
-    'lewis6991/gitsigns.nvim', -- add git related info in signs columns/popups
-    requires = {
-      'nvim-lua/plenary.nvim'
-    }
+    'kyazdani42/nvim-tree.lua',                     -- file tree sidebar
+    requires = { 'kyazdani42/nvim-web-devicons' }   -- optional, for file icon
+  }
+  use {
+    'lewis6991/gitsigns.nvim',  -- git related info in signs columns/popups
+    requires = { 'nvim-lua/plenary.nvim' }
   }
 end)
 
@@ -112,27 +108,21 @@ vim.g.indent_blankline_filetype_exclude = { 'help', 'packer' }
 vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
 vim.g.indent_blankline_show_trailing_blankline_indent = false
 
--- Setup fzf-lua keybinds
-vim.api.nvim_set_keymap('n', '<C-P>',
-  "<cmd>lua require('fzf-lua').files()<CR>",
-  { noremap = true, silent = true })
+-- Set fzf-lua keymap
+vim.keymap.set('n', '<c-P>',
+  "<cmd>lua require('fzf-lua').files()<CR>")
 
-vim.api.nvim_set_keymap('n', '<C-SPACE>',
-  "<cmd>lua require('fzf-lua').live_grep_native()<CR>",
-  { noremap = true, silent = true })
-
--- Enable nvim tree
-require("nvim-tree").setup()
-
-vim.api.nvim_set_keymap('n', '<C-B>',
-  "<cmd>NvimTreeToggle<CR>",
-  { noremap = true, silent = true })
+vim.keymap.set('n', '<c-SPACE>',
+  "<cmd>lua require('fzf-lua').grep_project()<CR>")
 
 -- Enable Comment.nvim
 require('Comment').setup()
 
--- Enable nvim-tree
-require'nvim-tree'.setup()
+-- Enable nvim-tree (default settings)
+require('nvim-tree').setup()
+vim.keymap.set('n', '<C-b>', ':NvimTreeToggle<CR>')
+vim.keymap.set('n', '<leader>r', ':NvimTreeRefresh<CR>')
+vim.keymap.set('n', '<leader>n', ':NvimTreeFindFile<CR>')
 
 -- Set statusbar
 require('lualine').setup {
