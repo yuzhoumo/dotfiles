@@ -11,8 +11,11 @@ Thumbs.db
 .Trashes
 
 # Programming artifacts
-.vscode/
 node_modules/
 *.pyc
-*.swp
 
+# Editors
+.vscode/
+*.bak
+*.swp
+tags
