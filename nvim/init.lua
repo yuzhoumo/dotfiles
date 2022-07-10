@@ -37,6 +37,11 @@ require('packer').startup(function(use)
       'kyazdani42/nvim-web-devicons', -- optional, for file icon
     }
   }
+  use { 'junegunn/fzf', run = './install --bin' } -- get fzf dependency
+  use {
+    'ibhagwan/fzf-lua',
+    requires = { 'kyazdani42/nvim-web-devicons' } -- optional, for file icon
+  }
   use {
     'lewis6991/gitsigns.nvim', -- add git related info in signs columns/popups
     requires = {
@@ -59,7 +64,7 @@ vim.opt.smarttab = true
 vim.opt.autoindent = true
 vim.opt.expandtab = true
 
--- Show invisible characters
+-- Show invisible trailing characters
 vim.opt.list = true
 vim.opt.listchars:append("tab:▸ ")
 vim.opt.listchars:append("trail:⋅")
@@ -70,7 +75,7 @@ vim.opt.listchars:append("nbsp:_")
 vim.opt.textwidth = 79
 vim.opt.colorcolumn = "+1,+31"
 
--- Set highlight on search
+-- Disable highlight on search
 vim.o.hlsearch = false
 
 -- Make line numbers default
@@ -106,6 +111,22 @@ vim.g.indent_blankline_char = '┊'
 vim.g.indent_blankline_filetype_exclude = { 'help', 'packer' }
 vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
 vim.g.indent_blankline_show_trailing_blankline_indent = false
+
+-- Setup fzf-lua keybinds
+vim.api.nvim_set_keymap('n', '<C-P>',
+  "<cmd>lua require('fzf-lua').files()<CR>",
+  { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<C-SPACE>',
+  "<cmd>lua require('fzf-lua').live_grep_native()<CR>",
+  { noremap = true, silent = true })
+
+-- Enable nvim tree
+require("nvim-tree").setup()
+
+vim.api.nvim_set_keymap('n', '<C-B>',
+  "<cmd>NvimTreeToggle<CR>",
+  { noremap = true, silent = true })
 
 -- Enable Comment.nvim
 require('Comment').setup()
