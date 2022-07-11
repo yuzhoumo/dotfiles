@@ -4,11 +4,15 @@
 [includeIf "gitdir:~/Code/ppanda/"]
   path = ~/.config/git/.gitconfig-ppanda
 
-# Linux
+# WSL/Linux
 [includeIf "gitdir:~/code/joe/"]
   path = ~/.config/git/.gitconfig-joe
 [includeIf "gitdir:~/code/ppanda/"]
   path = ~/.config/git/.gitconfig-ppanda
 
 [core]
+  editor = vim
   excludesfile = ~/.config/git/.gitignore
+
+[pull]
+  rebase = true
