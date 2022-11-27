@@ -28,6 +28,9 @@ opt.wrap = false
 -- sign column (for plugins that need it)
 opt.signcolumn = "yes"
 
+-- terminal true color
+opt.termguicolors = true
+
 -- plugin execution timeout (ms after typing)
 opt.updatetime = 1000
 
