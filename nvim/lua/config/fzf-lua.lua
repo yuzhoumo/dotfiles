@@ -4,5 +4,5 @@ if not ok then
   return
 end
 
-vim.keymap.set("n", "<c-P>", fzf.files)
-vim.keymap.set("n", "<c-SPACE>", fzf.grep_project)
+vim.keymap.set("n", "<c-p>", fzf.files)
+vim.keymap.set("n", "<c-s-p>", fzf.grep_project)

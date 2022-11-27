@@ -15,9 +15,17 @@ return require("packer").startup(function(use)
   use "tpope/vim-rhubarb"             -- fugitive-companion for github
   use "ludovicchabant/vim-gutentags"  -- automatic tags management
 
-  use { -- autocompletion plugin
+  use "hrsh7th/cmp-buffer"            -- source for text in buffer
+  use "hrsh7th/cmp-path"              -- source for file system paths
+
+  use { -- autocompletions
     "hrsh7th/nvim-cmp",
-    config = "require('config.nvim-cmp')"
+    config = "require('config.nvim-cmp')",
+    requires = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "L3MON4D3/LuaSnip"
+    }
   }
 
   use { -- fzf dependency
