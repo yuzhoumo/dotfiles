@@ -1,4 +1,9 @@
-local lualine = require("lualine")
+local ok, lualine = pcall(require, "lualine")
+
+if not ok then
+  vim.notify("lualine plugin not found!")
+  return
+end
 
 lualine.setup {
   options = {
@@ -8,4 +13,3 @@ lualine.setup {
     section_separators = "",
   },
 }
-
