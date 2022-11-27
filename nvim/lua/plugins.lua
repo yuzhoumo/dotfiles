@@ -15,9 +15,6 @@ return require("packer").startup(function(use)
   use "tpope/vim-rhubarb"             -- fugitive-companion for github
   use "ludovicchabant/vim-gutentags"  -- automatic tags management
 
-  use "hrsh7th/cmp-buffer"            -- source for text in buffer
-  use "hrsh7th/cmp-path"              -- source for file system paths
-
   use { -- autocompletions
     "hrsh7th/nvim-cmp",
     config = "require('config.nvim-cmp')",
