@@ -14,22 +14,26 @@ return require("packer").startup(function(use)
   use "tpope/vim-fugitive"            -- git commands in nvim
   use "tpope/vim-rhubarb"             -- fugitive-companion for github
   use "ludovicchabant/vim-gutentags"  -- automatic tags management
-  use "hrsh7th/nvim-cmp"              -- autocompletion plugin
 
-  use { -- get fzf dependency
+  use { -- autocompletion plugin
+    "hrsh7th/nvim-cmp",
+    config = "require('config.nvim-cmp')"
+  }
+
+  use { -- fzf dependency
     "junegunn/fzf",
     run = "./install --bin"
   }
 
   use { -- fzf file search
     "ibhagwan/fzf-lua",
-    config = "require('config.fzf')",
+    config = "require('config.fzf-lua')",
     requires = { "kyazdani42/nvim-web-devicons" }
   }
 
   use { -- file tree sidebar
     "kyazdani42/nvim-tree.lua",
-    config = "require('config.tree')",
+    config = "require('config.nvim-tree')",
     requires = { "kyazdani42/nvim-web-devicons" }
   }
 
@@ -49,4 +53,3 @@ return require("packer").startup(function(use)
     config = "require('config.comment')"
   }
 end)
-

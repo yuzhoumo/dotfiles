@@ -1,5 +1,4 @@
 local ok, fzf = pcall(require, "fzf-lua")
-
 if not ok then
   vim.notify("plugin not found: fzf-lua")
   return
