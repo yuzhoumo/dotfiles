@@ -1,7 +1,7 @@
 local ok, nvimtree = pcall(require, "nvim-tree")
 
 if not ok then
-  vim.notify("nvim-tree plugin not found!")
+  vim.notify("plugin not found: nvim-tree")
   return
 end
 

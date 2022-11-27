@@ -4,6 +4,7 @@ local install_path =
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.fn.system({"git", "clone", "--depth", "1",
     "https://github.com/wbthomason/packer.nvim", install_path})
+  vim.cmd "packadd packer.nvim"
 end
 
 return require("packer").startup(function(use)
@@ -22,30 +23,30 @@ return require("packer").startup(function(use)
 
   use { -- fzf file search
     "ibhagwan/fzf-lua",
-    config = "require('pconf.fzf')",
+    config = "require('config.fzf')",
     requires = { "kyazdani42/nvim-web-devicons" }
   }
 
   use { -- file tree sidebar
     "kyazdani42/nvim-tree.lua",
-    config = "require('pconf.tree')",
+    config = "require('config.tree')",
     requires = { "kyazdani42/nvim-web-devicons" }
   }
 
   use { -- git info in sign column/popups
     "lewis6991/gitsigns.nvim",
-    config = "require('pconf.gitsigns')",
+    config = "require('config.gitsigns')",
     requires = { "nvim-lua/plenary.nvim" }
   }
 
   use { -- fancier statusline
     "nvim-lualine/lualine.nvim",
-    config = "require('pconf.lualine')"
+    config = "require('config.lualine')"
   }
 
   use { -- "gc" to comment visual regions
     "numToStr/Comment.nvim",
-    config = "require('pconf.comment')"
+    config = "require('config.comment')"
   }
 end)
 
