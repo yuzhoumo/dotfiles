@@ -32,7 +32,7 @@ null_ls.setup {
         callback = function()
           vim.lsp.buf.format {
             filter = function(client)
-              --  only use null-ls for formatting instead of lsp server
+              -- only use null-ls for formatting instead of lsp server
               return client.name == "null-ls"
             end,
             bufnr = bufnr,

@@ -25,6 +25,25 @@ return require("packer").startup(function(use)
     requires = { "nvim-lua/plenary.nvim" },
   }
 
+  use { -- language parsing abstraction layer
+    "nvim-treesitter/nvim-treesitter",
+    run = function()
+      local ts_update =
+        require("nvim-treesitter.install").update { with_sync = true }
+      ts_update()
+    end,
+    config = "require('config.treesitter')",
+  }
+  use { -- autoclose parentheses, quotes, etc
+    "windwp/nvim-autopairs",
+    after = { "nvim-treesitter", "nvim-cmp" },
+    config = 'require("config.autopairs")',
+  }
+  use { -- autoclose html tags
+    "windwp/nvim-ts-autotag",
+    after = "nvim-treesitter",
+  }
+
   use { -- configure linters
     "jose-elias-alvarez/null-ls.nvim",
     config = "require('config.lsp.null-ls')",
