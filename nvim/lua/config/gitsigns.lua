@@ -1,5 +1,4 @@
 local ok, gitsigns = pcall(require, "gitsigns")
-
 if not ok then
   vim.notify("plugin not found: gitsigns")
   return
