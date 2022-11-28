@@ -4,4 +4,3 @@ require("keymaps")
 require("settings")
 require("autocmd")
 require("colorscheme")
-
