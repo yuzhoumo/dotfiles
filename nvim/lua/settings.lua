@@ -56,4 +56,3 @@ opt.undofile = true
 
 -- set completeopt to have a better completion experience
 opt.completeopt = "menu,menuone,noselect"
-

@@ -47,3 +47,7 @@ mkdir -p "${HOME}/.config/nvim/" && \
 # tmux config
 mkdir -p "${HOME}/.config/tmux/" && \
   cp -r tmux/. "${HOME}/.config/tmux/."
+
+# stylua config (lua formatter)
+mkdir -p "${HOME}/.config/stylua/" && \
+  cp -r stylua/. "${HOME}/.config/stylua/."
