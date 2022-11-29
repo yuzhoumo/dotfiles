@@ -15,7 +15,11 @@ end
 
 return require("packer").startup(function(use)
   use("wbthomason/packer.nvim") -- package manager
-  use("Mofiqul/vscode.nvim") -- vscode inspired theme
+
+  use { -- pastel theme
+    "catppuccin/nvim",
+    as = "catpuccin",
+  }
 
   use("tpope/vim-fugitive") -- git commands in nvim
   use("tpope/vim-rhubarb") -- fugitive-companion for github

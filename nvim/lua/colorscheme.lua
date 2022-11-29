@@ -1,9 +1,25 @@
-local colorscheme = "vscode"
-local ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+local ok, catppuccin = pcall(require, "catppuccin")
 if not ok then
-  vim.notify("colorscheme not found: " .. colorscheme)
+  vim.notify("colorscheme not found: catppuccin")
   return
 end
 
-vim.g.vscode_style = "dark"
-vim.g.vscode_italic_comment = 1
+local o = vim.o
+o.termguicolors = true
+o.background = "dark"
+
+catppuccin.setup {
+  integrations = { telescope = false },
+}
+
+vim.cmd.colorscheme("catppuccin")
+
+local function toggle_theme()
+  if o.background == "dark" then
+    o.background = "light"
+  else
+    o.background = "dark"
+  end
+end
+
+vim.keymap.set("n", "<leader>tt", toggle_theme)
