@@ -22,6 +22,7 @@ null_ls.setup {
         return utils.root_has_file(".eslintrc.js")
       end,
     },
+    formatting.rustfmt, -- rust formatter
   },
   on_attach = function(current_client, bufnr)
     if current_client.supports_method("textDocument/formatting") then
