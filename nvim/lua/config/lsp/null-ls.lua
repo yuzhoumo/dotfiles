@@ -14,6 +14,7 @@ null_ls.setup {
   sources = {
     formatting.stylua, -- lua formatter
     formatting.autopep8, -- python formatter
+    formatting.rustfmt,
     diagnostics.pylint, -- python linter
     formatting.prettier, -- js/ts formatter
     diagnostics.eslint_d.with { -- js/ts linter

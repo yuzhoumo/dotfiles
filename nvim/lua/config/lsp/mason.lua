@@ -24,6 +24,7 @@ mason_lspconfig.setup {
     "tsserver",
     "clangd",
     "sumneko_lua",
+    "rust_analyzer",
     "bashls",
     "cssls",
     "html",
@@ -34,6 +35,7 @@ mason_lspconfig.setup {
 mason_null_ls.setup {
   ensure_installed = {
     "stylua", -- lua formatter
+    "rustfmt", -- rust formatter
     "autopep8", -- python formatter
     "pylint", -- python linter
     "prettier", -- ts/js formatter

@@ -43,6 +43,11 @@ lspconfig["cssls"].setup {
   capabilities = capabilities,
 }
 
+-- configure rust server
+lspconfig["rust_analyzer"].setup {
+  capabilities = capabilities,
+}
+
 -- configure lua server
 lspconfig["sumneko_lua"].setup {
   capabilities = capabilities,
