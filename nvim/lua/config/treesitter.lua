@@ -18,6 +18,7 @@ treesitter.setup {
     "bash",
     "json",
     "javascript",
+    "rust",
     "typescript",
     "tsx",
     "yaml",

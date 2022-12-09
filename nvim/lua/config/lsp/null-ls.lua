@@ -14,7 +14,6 @@ null_ls.setup {
   sources = {
     formatting.stylua, -- lua formatter
     formatting.autopep8, -- python formatter
-    formatting.rustfmt,
     diagnostics.pylint, -- python linter
     formatting.prettier, -- js/ts formatter
     diagnostics.eslint_d.with { -- js/ts linter
@@ -23,6 +22,7 @@ null_ls.setup {
         return utils.root_has_file(".eslintrc.js")
       end,
     },
+    formatting.rustfmt, -- rust formatter
   },
   on_attach = function(current_client, bufnr)
     if current_client.supports_method("textDocument/formatting") then
