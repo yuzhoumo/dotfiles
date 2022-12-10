@@ -47,6 +47,12 @@ else
 
 fi
 
+# Source NIX env and export locales if installed
+# https://nixos.wiki/wiki/Locales
+[ -d ~/.nix-profile ] && \
+  . ~/.nix-profile/etc/profile.d/nix.sh && \
+  export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
+
 ###############################################################################
 # Plugins                                                                     #
 ###############################################################################
