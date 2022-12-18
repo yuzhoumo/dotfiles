@@ -6,7 +6,12 @@
 # navigate to current directory
 cd "$(dirname "${0}")" || exit
 
-if [ "$(uname -s)" = 'Darwin' ]; then # macOS installation
+if grep -q microsoft /proc/version; then # WSL installation
+
+  # directory for git repos
+  CODE_DIR="${HOME}/code"
+
+else #macOS and Linux installation
 
   # directory for git repos
   CODE_DIR="${HOME}/Code"
@@ -14,11 +19,6 @@ if [ "$(uname -s)" = 'Darwin' ]; then # macOS installation
   # kitty config
   mkdir -p "${HOME}/.config/kitty" && \
     cp -r kitty/. "${HOME}/.config/kitty/."
-
-elif grep -q microsoft /proc/version; then # WSL installation
-
-  # directory for git repos
-  CODE_DIR="${HOME}/code"
 
 fi
 

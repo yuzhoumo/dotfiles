@@ -1,12 +1,12 @@
-# macOS
-[includeIf "gitdir:~/Code/joe/"]
-  path = ~/.config/git/.gitconfig-joe
+# macOS and Linux
+[includeIf "gitdir:~/Code/yuzhoumo/"]
+  path = ~/.config/git/.gitconfig-yuzhoumo
 [includeIf "gitdir:~/Code/ppanda/"]
   path = ~/.config/git/.gitconfig-ppanda
 
-# WSL/Linux
-[includeIf "gitdir:~/code/joe/"]
-  path = ~/.config/git/.gitconfig-joe
+# WSL
+[includeIf "gitdir:~/code/yuzhoumo/"]
+  path = ~/.config/git/.gitconfig-yuzhoumo
 [includeIf "gitdir:~/code/ppanda/"]
   path = ~/.config/git/.gitconfig-ppanda
 
