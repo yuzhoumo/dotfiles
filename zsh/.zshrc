@@ -26,6 +26,9 @@ if [ $(uname -s) = 'Darwin' ]; then
   alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
   alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
+  # Get local ip address
+  alias locip="ipconfig getifaddr en0"
+
 elif grep -q microsoft /proc/version; then
 
   # Retrieve Windows username and remove \r carriage return
@@ -42,8 +45,21 @@ elif grep -q microsoft /proc/version; then
 
 else
 
+  # Set work directory for git repos
+  export CODE_DIR="${HOME}/Code"
+
+  # Set desktop directory
+  export DESKTOP_DIR="${HOME}/Desktop"
+
+  # Get local ip address
+  alias locip="hostname -I | awk '{print $1}'"
+
   # Normalize open for Linux
   alias open="xdg-open"
+
+  # Normalize pbcopy/pbpaste for Linux
+  alias pbcopy='xclip -selection clipboard'
+  alias pbpaste='xclip -selection clipboard -o'
 
 fi
 
@@ -94,8 +110,8 @@ export LESS_TERMCAP_md="${yellow}"
 export PYTHONIOENCODING='UTF-8'
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+if [ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
 fi
 
 ###############################################################################
@@ -143,13 +159,13 @@ alias pull="git pull"
 alias desk="cd ${DESKTOP_DIR}"
 
 # Code directory shortcuts
-alias joe="cd ${CODE_DIR}/joe"
-alias ppanda="cd ${CODE_DIR}/ppanda"
-alias con="cd ${CODE_DIR}/joe/configs"
-alias dot="cd ${CODE_DIR}/joe/dotfiles"
-alias syncdot="${CODE_DIR}/joe/dotfiles/sync.sh && reload"
-alias editvim="vim ${CODE_DIR}/joe/dotfiles/nvim/init.lua"
-alias editzsh="vim ${CODE_DIR}/joe/dotfiles/zsh/.zshrc"
+alias yuz="cd ${CODE_DIR}/yuzhoumo"
+alias pan="cd ${CODE_DIR}/ppanda"
+alias con="cd ${CODE_DIR}/yuzhoumo/configs"
+alias dot="cd ${CODE_DIR}/yuzhoumo/dotfiles"
+alias syncdot="${CODE_DIR}/yuzhoumo/dotfiles/sync.sh && reload"
+alias editvim="vim ${CODE_DIR}/yuzhoumo/dotfiles/nvim/init.lua"
+alias editzsh="vim ${CODE_DIR}/yuzhoumo/dotfiles/zsh/.zshrc"
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec ${SHELL} -l"
@@ -160,9 +176,8 @@ alias path='echo -e ${PATH//:/\\n}'
 # Trim new lines and copy to clipboard
 alias copy="tr -d '\n' | pbcopy"
 
-# IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en0"
+# Get public IP address
+alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 # Recursively delete MacOS `.DS_Store` files
 alias cleands="find . -type f -name '*.DS_Store' -ls -delete"
@@ -198,20 +213,11 @@ command -v hd > /dev/null || alias hd="hexdump -C"
 # Functions                                                                   #
 ###############################################################################
 
-# Create a new directory and enter it
-function mkd() {
-  mkdir -p "$@" && cd "$_"
-}
-
-# Use Git’s colored diff when available
-hash git &>/dev/null;
-if [ $? -eq 0 ]; then
-  function diff() {
-    git diff --no-index --color-words "$@"
-  }
-fi
+# Note: add unalias before function defs if any conflict exists
+# (added due to `alias o=less` being set on openSUSE)
 
 # `o` with no args opens the current directory, otherwise opens given location
+alias o >/dev/null 2>&1 && unalias o
 function o() {
   if [ $# -eq 0 ]; then
     open .
@@ -219,3 +225,18 @@ function o() {
     open "$@"
   fi
 }
+
+# Create a new directory and enter it
+alias mkd >/dev/null 2>&1 && unalias mkd
+function mkd() {
+  mkdir -p "$@" && cd "$_"
+}
+
+# Use Git’s colored diff when available
+hash git &>/dev/null;
+if [ $? -eq 0 ]; then
+  alias diff >/dev/null 2>&1 && unalias diff
+  function diff() {
+    git diff --no-index --color-words "$@"
+  }
+fi
