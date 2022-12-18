@@ -31,6 +31,10 @@ mkdir -p "${HOME}/.config/zsh/" && \
   cp -r zsh/. "${HOME}/.config/zsh/." && \
   mv "${HOME}/.config/zsh/.zshenv" "${HOME}/.zshenv"
 
+# btop config
+mkdir -p "${HOME}/.config/btop/" && \
+  cp -r btop/. "${HOME}/.config/btop/."
+
 # editor config
 mkdir -p "${CODE_DIR}" && \
   cp editor/.editorconfig "${CODE_DIR}/.editorconfig"
