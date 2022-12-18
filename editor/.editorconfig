@@ -11,11 +11,11 @@ end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.{js,ts,jsx,tsx,c,cpp,h,sh,zsh}]
+[*.{js,ts,jsx,tsx,c,cpp,h,lua,rs,sh,zsh}]
 indent_style = space
 indent_size = 2
 
-[*.{py,java}]
+[*.{go,py,java}]
 indent_style = space
 indent_size = 4
 
