@@ -51,15 +51,24 @@ else
   # Set desktop directory
   export DESKTOP_DIR="${HOME}/Desktop"
 
+  # Set input method to use ibus
+  export GTK_IM_MODULE="ibus"
+  export QT_IM_MODULE="ibus"
+  export SDL_IM_MODULE="ibus"
+  export XMODIFIERS="@im=ibus"
+
+  # Set kitty to use ibus
+  alias kitty="GLFW_IM_MODULE=ibus command kitty"
+
   # Get local ip address
   alias locip="hostname -I | awk '{print $1}'"
 
   # Normalize open for Linux
   alias open="xdg-open"
 
-  # Normalize pbcopy/pbpaste for Linux
-  alias pbcopy='xclip -selection clipboard'
-  alias pbpaste='xclip -selection clipboard -o'
+  # Normalize pbcopy/pbpaste for openSUSE
+  alias pbcopy="xclip -selection clipboard"
+  alias pbpaste="xclip -selection clipboard -o"
 
 fi
 
