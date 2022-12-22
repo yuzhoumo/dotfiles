@@ -13,6 +13,7 @@
 [core]
   editor = vim
   excludesfile = ~/.config/git/.gitignore
+  pager = "less -F -X"
 
 [pull]
   rebase = true
