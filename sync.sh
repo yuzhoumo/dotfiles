@@ -6,12 +6,12 @@
 # navigate to current directory
 cd "$(dirname "${0}")" || exit
 
-if grep -q microsoft /proc/version; then # WSL installation
+if [ -d /proc/version ] && grep -q microsoft /proc/version; then # WSL
 
   # directory for git repos
   CODE_DIR="${HOME}/code"
 
-else #macOS and Linux installation
+else # macOS and Linux
 
   # directory for git repos
   CODE_DIR="${HOME}/Code"
