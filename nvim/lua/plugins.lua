@@ -29,6 +29,9 @@ return require("packer").startup(function(use)
   -- fugitive-companion for github
   use("tpope/vim-rhubarb")
 
+  -- automatic indent width adjustment
+  use("tpope/vim-sleuth")
+
   -- git info in sign column/popups
   use {
     "lewis6991/gitsigns.nvim",
@@ -126,5 +129,10 @@ return require("packer").startup(function(use)
   use {
     "numToStr/Comment.nvim",
     config = "require('config.comment')",
+  }
+
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    config = "require('config.indent-blankline')",
   }
 end)
