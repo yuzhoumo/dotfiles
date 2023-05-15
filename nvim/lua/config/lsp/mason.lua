@@ -20,26 +20,27 @@ mason.setup()
 
 mason_lspconfig.setup {
   ensure_installed = {
-    "pyright",
-    "tsserver",
-    "clangd",
-    "sumneko_lua",
-    "rust_analyzer",
     "bashls",
+    "clangd",
     "cssls",
     "html",
+    "jdtls",
+    "pyright",
+    "rust_analyzer",
+    "sumneko_lua",
+    "tsserver",
   },
   automatic_installation = true,
 }
 
 mason_null_ls.setup {
   ensure_installed = {
-    "stylua", -- lua formatter
-    "rustfmt", -- rust formatter
     "autopep8", -- python formatter
-    "pylint", -- python linter
-    "prettier", -- ts/js formatter
     "eslint_d", -- ts/js linter
+    "prettier", -- ts/js formatter
+    "pylint", -- python linter
+    "rustfmt", -- rust formatter
+    "stylua", -- lua formatter
   },
   automatic_installation = true,
 }
