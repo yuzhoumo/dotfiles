@@ -1,5 +1,11 @@
 local opt = vim.opt
 
+-- disable plugin keymaps
+vim.g.no_plugin_maps = 1
+
+-- search start/end of file for vim modelines
+opt.modelines = 5
+
 -- indentation
 opt.shiftwidth = 2
 opt.softtabstop = 2
@@ -15,9 +21,19 @@ opt.listchars:append("trail:⋅")
 opt.listchars:append("eol:↴")
 opt.listchars:append("nbsp:_")
 
+-- highlight matching pairs
+opt.matchpairs = "(:),{:},[:],<:>"
+
+-- highlight line cursor is on
+opt.cursorline = true
+
 -- text width and rulers
 opt.textwidth = 79
 opt.colorcolumn = "+1,+31"
+
+-- keep lines around cursor visible while scrolling
+opt.scrolloff = 8
+opt.sidescrolloff = 8
 
 -- line numbers
 opt.number = true
@@ -45,7 +61,7 @@ opt.hlsearch = false
 opt.splitbelow = true
 opt.splitright = true
 
--- mouse mode
+-- enable mouse in all modes
 opt.mouse = "a"
 
 -- enable system clipboard
@@ -56,3 +72,11 @@ opt.undofile = true
 
 -- set completeopt to have a better completion experience
 opt.completeopt = "menu,menuone,noselect"
+
+-- spell suggestion
+opt.spelllang = "en_us"
+opt.spellsuggest = "best"
+
+-- auto read/write on file change
+opt.autoread = true
+opt.autowrite = false
