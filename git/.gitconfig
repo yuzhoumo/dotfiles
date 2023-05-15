@@ -11,7 +11,7 @@
   path = ~/.config/git/.gitconfig-ppanda
 
 [core]
-  editor = vim
+  editor = nvim
   excludesfile = ~/.config/git/.gitignore
   pager = "less -F -X"
 
