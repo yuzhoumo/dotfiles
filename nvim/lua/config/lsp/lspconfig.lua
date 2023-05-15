@@ -13,18 +13,8 @@ end
 -- use to enable autocompletion on all servers
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
--- configure python server
-lspconfig["pyright"].setup {
-  capabilities = capabilities,
-}
-
--- configure java server
-lspconfig["jdtls"].setup {
-  capabilities = capabilities,
-}
-
--- configure javascript server
-lspconfig["tsserver"].setup {
+-- configure bash server
+lspconfig["bashls"].setup {
   capabilities = capabilities,
 }
 
@@ -33,8 +23,8 @@ lspconfig["clangd"].setup {
   capabilities = capabilities,
 }
 
--- configure bash server
-lspconfig["bashls"].setup {
+-- configure css server
+lspconfig["cssls"].setup {
   capabilities = capabilities,
 }
 
@@ -43,18 +33,13 @@ lspconfig["html"].setup {
   capabilities = capabilities,
 }
 
--- configure css server
-lspconfig["cssls"].setup {
-  capabilities = capabilities,
-}
-
--- configure rust server
-lspconfig["rust_analyzer"].setup {
+-- configure java server
+lspconfig["jdtls"].setup {
   capabilities = capabilities,
 }
 
 -- configure lua server
-lspconfig["sumneko_lua"].setup {
+lspconfig["lua_ls"].setup {
   capabilities = capabilities,
   settings = {
     Lua = {
@@ -71,4 +56,19 @@ lspconfig["sumneko_lua"].setup {
       },
     },
   },
+}
+
+-- configure python server
+lspconfig["pyright"].setup {
+  capabilities = capabilities,
+}
+
+-- configure rust server
+lspconfig["rust_analyzer"].setup {
+  capabilities = capabilities,
+}
+
+-- configure javascript server
+lspconfig["tsserver"].setup {
+  capabilities = capabilities,
 }
