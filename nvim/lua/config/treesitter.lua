@@ -26,6 +26,7 @@ treesitter.setup {
     "css",
     "markdown",
     "vim",
+    "glsl",
   },
   auto_install = true,
 }

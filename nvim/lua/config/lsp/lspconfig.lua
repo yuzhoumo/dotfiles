@@ -18,6 +18,11 @@ lspconfig["pyright"].setup {
   capabilities = capabilities,
 }
 
+-- configure java server
+lspconfig["jdtls"].setup {
+  capabilities = capabilities,
+}
+
 -- configure javascript server
 lspconfig["tsserver"].setup {
   capabilities = capabilities,
