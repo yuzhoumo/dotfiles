@@ -1,58 +1,80 @@
-local opt = vim.opt
+-- disable plugin keymaps
+vim.g.no_plugin_maps = 1
+
+-- search start/end of file for vim modelines
+vim.opt.modelines = 5
 
 -- indentation
-opt.shiftwidth = 2
-opt.softtabstop = 2
-opt.tabstop = 4
-opt.smarttab = true
-opt.autoindent = true
-opt.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.tabstop = 4
+vim.opt.smarttab = true
+vim.opt.autoindent = true
+vim.opt.expandtab = true
 
 -- invisible trailing characters
-opt.list = true
-opt.listchars:append("tab:▸ ")
-opt.listchars:append("trail:⋅")
-opt.listchars:append("eol:↴")
-opt.listchars:append("nbsp:_")
+vim.opt.list = true
+vim.opt.listchars:append("tab:▸ ")
+vim.opt.listchars:append("trail:⋅")
+vim.opt.listchars:append("eol:↴")
+vim.opt.listchars:append("nbsp:_")
+
+-- highlight matching pairs
+vim.opt.matchpairs = "(:),{:},[:],<:>"
+
+-- highlight line cursor is on
+vim.opt.cursorline = true
 
 -- text width and rulers
-opt.textwidth = 79
-opt.colorcolumn = "+1,+31"
+vim.opt.textwidth = 79
+vim.opt.colorcolumn = "+1,+31"
+
+-- keep lines around cursor visible while scrolling
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
 
 -- line numbers
-opt.number = true
+vim.opt.number = true
 
 -- line wrap
-opt.wrap = false
+vim.opt.wrap = false
 
 -- sign column (for plugins that need it)
-opt.signcolumn = "yes"
+vim.opt.signcolumn = "yes"
 
 -- terminal true color
-opt.termguicolors = true
+vim.opt.termguicolors = true
 
 -- plugin execution timeout (ms after typing)
-opt.updatetime = 1000
+vim.opt.updatetime = 1000
 
 -- case insensitive search (unless /C or capital in search)
-opt.ignorecase = true
-opt.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- highlight on search
-opt.hlsearch = false
+vim.opt.hlsearch = false
 
 -- split windows
-opt.splitbelow = true
-opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
--- mouse mode
-opt.mouse = "a"
+-- enable mouse in all modes
+vim.opt.mouse = "a"
 
 -- enable system clipboard
-opt.clipboard = "unnamed,unnamedplus"
+vim.opt.clipboard = "unnamed,unnamedplus"
 
 -- save undo history between sessions
-opt.undofile = true
+vim.opt.undofile = true
 
--- set completeopt to have a better completion experience
-opt.completeopt = "menu,menuone,noselect"
+-- set completevim.opt to have a better completion experience
+vim.opt.completeopt = "menu,menuone,noselect"
+
+-- spell suggestion
+vim.opt.spelllang = "en_us"
+vim.opt.spellsuggest = "best"
+
+-- auto read/write on file change
+vim.opt.autoread = true
+vim.opt.autowrite = false
