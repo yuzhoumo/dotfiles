@@ -131,6 +131,7 @@ return require("packer").startup(function(use)
     config = "require('config.comment')",
   }
 
+  -- indent guides
   use {
     "lukas-reineke/indent-blankline.nvim",
     config = "require('config.indent-blankline')",
