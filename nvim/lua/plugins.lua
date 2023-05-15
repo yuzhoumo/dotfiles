@@ -14,22 +14,30 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 return require("packer").startup(function(use)
-  use("wbthomason/packer.nvim") -- package manager
+  -- package manager
+  use("wbthomason/packer.nvim")
 
-  use { -- pastel theme
+  -- pastel theme
+  use {
     "catppuccin/nvim",
     as = "catpuccin",
   }
 
-  use("tpope/vim-fugitive") -- git commands in nvim
-  use("tpope/vim-rhubarb") -- fugitive-companion for github
-  use { -- git info in sign column/popups
+  -- git commands in nvim
+  use("tpope/vim-fugitive")
+
+  -- fugitive-companion for github
+  use("tpope/vim-rhubarb")
+
+  -- git info in sign column/popups
+  use {
     "lewis6991/gitsigns.nvim",
     config = "require('config.gitsigns')",
     requires = { "nvim-lua/plenary.nvim" },
   }
 
-  use { -- language parsing abstraction layer
+  -- language parsing abstraction layer
+  use {
     "nvim-treesitter/nvim-treesitter",
     run = function()
       local ts_update =
@@ -38,26 +46,35 @@ return require("packer").startup(function(use)
     end,
     config = "require('config.treesitter')",
   }
-  use { -- autoclose parentheses, quotes, etc
+
+  -- autoclose parentheses, quotes, etc
+  use {
     "windwp/nvim-autopairs",
     after = { "nvim-treesitter", "nvim-cmp" },
     config = 'require("config.autopairs")',
   }
-  use { -- autoclose html tags
+
+  -- autoclose html tags
+  use {
     "windwp/nvim-ts-autotag",
     after = "nvim-treesitter",
   }
 
-  use { -- configure linters
+  -- configure linters
+  use {
     "jose-elias-alvarez/null-ls.nvim",
     config = "require('config.lsp.null-ls')",
   }
-  use { -- configure lsp servers
+
+  -- configure lsp servers
+  use {
     "neovim/nvim-lspconfig",
     config = "require('config.lsp.lspconfig')",
     requires = { "hrsh7th/cmp-nvim-lsp" },
   }
-  use { -- manage lsp servers and linters
+
+  -- manage lsp servers and linters
+  use {
     "williamboman/mason.nvim",
     config = "require('config.lsp.mason')",
     requires = {
@@ -65,7 +82,9 @@ return require("packer").startup(function(use)
       "jayp0521/mason-null-ls.nvim",
     },
   }
-  use { -- autocompletions
+
+  -- autocompletions
+  use {
     "hrsh7th/nvim-cmp",
     config = "require('config.nvim-cmp')",
     requires = {
@@ -77,28 +96,34 @@ return require("packer").startup(function(use)
     },
   }
 
-  use { -- fzf dependency
+  -- fzf (dependency)
+  use {
     "junegunn/fzf",
     run = "./install --bin",
   }
-  use { -- fzf file search
+
+  -- fzf file search
+  use {
     "ibhagwan/fzf-lua",
     config = "require('config.fzf-lua')",
     requires = { "kyazdani42/nvim-web-devicons" },
   }
 
-  use { -- file tree sidebar
+  -- file tree sidebar
+  use {
     "kyazdani42/nvim-tree.lua",
     config = "require('config.nvim-tree')",
     requires = { "kyazdani42/nvim-web-devicons" },
   }
 
-  use { -- fancier statusline
+  -- fancier statusline
+  use {
     "nvim-lualine/lualine.nvim",
     config = "require('config.lualine')",
   }
 
-  use { -- "gc" to comment visual regions
+  -- "gc" to comment visual regions
+  use {
     "numToStr/Comment.nvim",
     config = "require('config.comment')",
   }
