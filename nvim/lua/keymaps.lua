@@ -6,12 +6,12 @@ vim.g.maplocalleader = " "
 -- don't copy single deleted characters
 vim.keymap.set("n", "x", '"_x')
 
--- increment/decrement numbers
-vim.keymap.set("n", "<leader>+", "<C-a>")
-vim.keymap.set("n", "<leader>-", "<C-x>")
-
 -- tab management
 vim.keymap.set("n", "<leader>to", ":tabnew<CR>")
 vim.keymap.set("n", "<leader>tq", ":tabclose<CR>")
 vim.keymap.set("n", "<leader>tl", ":tabn<CR>")
 vim.keymap.set("n", "<leader>th", ":tabp<CR>")
+
+-- reselect after using < and > in visual mode
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
