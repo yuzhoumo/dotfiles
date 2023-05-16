@@ -1,32 +1,36 @@
-local ok, treesitter = pcall(require, "nvim-treesitter.configs")
-if not ok then
-  vim.notify("plugin not found: treesitter")
-  return
-end
-
-treesitter.setup {
-  highlight = { enable = true },
-  indent = { enable = true },
-  autotag = { enable = true },
-  ensure_installed = {
-    "lua",
-    "python",
-    "c",
-    "cpp",
-    "java",
-    "go",
-    "bash",
-    "json",
-    "javascript",
-    "rust",
-    "typescript",
-    "tsx",
-    "yaml",
-    "html",
-    "css",
-    "markdown",
-    "vim",
-    "glsl",
-  },
-  auto_install = true,
+return {
+  "nvim-treesitter/nvim-treesitter", -- language parse tree api
+  build = function()
+    local ts_update =
+    require("nvim-treesitter.install").update { with_sync = true }
+    ts_update()
+  end,
+  config = function()
+    require("nvim-treesitter.configs").setup {
+      highlight = { enable = true },
+      indent = { enable = true },
+      autotag = { enable = true },
+      ensure_installed = {
+        "bash",
+        "c",
+        "cpp",
+        "css",
+        "glsl",
+        "go",
+        "html",
+        "java",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "python",
+        "rust",
+        "tsx",
+        "typescript",
+        "vim",
+        "yaml",
+      },
+      auto_install = true,
+    }
+  end
 }

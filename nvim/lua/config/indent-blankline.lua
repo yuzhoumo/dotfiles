@@ -1,7 +1,6 @@
-local ok, indent_blankline = pcall(require, "indent_blankline")
-if not ok then
-  vim.notify("plugin not found: indent_blankline")
-  return
-end
-
-indent_blankline.setup()
+return {
+  "lukas-reineke/indent-blankline.nvim", -- indent guides
+  config = function()
+    require("indent_blankline").setup()
+  end
+}
