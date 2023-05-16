@@ -23,14 +23,20 @@ return require("packer").startup(function(use)
     as = "catpuccin",
   }
 
+  -- indent guides
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    config = "require('config.indent-blankline')",
+  }
+
+  -- automatic indent width adjustment
+  use("tpope/vim-sleuth")
+
   -- git commands in nvim
   use("tpope/vim-fugitive")
 
   -- fugitive-companion for github
   use("tpope/vim-rhubarb")
-
-  -- automatic indent width adjustment
-  use("tpope/vim-sleuth")
 
   -- git info in sign column/popups
   use {
@@ -39,67 +45,7 @@ return require("packer").startup(function(use)
     requires = { "nvim-lua/plenary.nvim" },
   }
 
-  -- language parsing abstraction layer
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    run = function()
-      local ts_update =
-        require("nvim-treesitter.install").update { with_sync = true }
-      ts_update()
-    end,
-    config = "require('config.treesitter')",
-  }
-
-  -- autoclose parentheses, quotes, etc
-  use {
-    "windwp/nvim-autopairs",
-    after = { "nvim-treesitter", "nvim-cmp" },
-    config = 'require("config.autopairs")',
-  }
-
-  -- autoclose html tags
-  use {
-    "windwp/nvim-ts-autotag",
-    after = "nvim-treesitter",
-  }
-
-  -- configure linters
-  use {
-    "jose-elias-alvarez/null-ls.nvim",
-    config = "require('config.lsp.null-ls')",
-  }
-
-  -- configure lsp servers
-  use {
-    "neovim/nvim-lspconfig",
-    config = "require('config.lsp.lspconfig')",
-    requires = { "hrsh7th/cmp-nvim-lsp" },
-  }
-
-  -- manage lsp servers and linters
-  use {
-    "williamboman/mason.nvim",
-    config = "require('config.lsp.mason')",
-    requires = {
-      "williamboman/mason-lspconfig.nvim",
-      "jayp0521/mason-null-ls.nvim",
-    },
-  }
-
-  -- autocompletions
-  use {
-    "hrsh7th/nvim-cmp",
-    config = "require('config.nvim-cmp')",
-    requires = {
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-nvim-lsp",
-      "onsails/lspkind-nvim",
-      "L3MON4D3/LuaSnip",
-    },
-  }
-
-  -- fzf (dependency)
+  -- fzf (install dependency)
   use {
     "junegunn/fzf",
     run = "./install --bin",
@@ -131,9 +77,39 @@ return require("packer").startup(function(use)
     config = "require('config.comment')",
   }
 
-  -- indent guides
+  -- language parse tree api
   use {
-    "lukas-reineke/indent-blankline.nvim",
-    config = "require('config.indent-blankline')",
+    "nvim-treesitter/nvim-treesitter",
+    run = function()
+      local ts_update =
+        require("nvim-treesitter.install").update { with_sync = true }
+      ts_update()
+    end,
+    config = "require('config.treesitter')",
+  }
+
+  -- lsp and autocompletion
+  use {
+    "VonHeikemen/lsp-zero.nvim",
+    branch = "v2.x",
+    config = "require('config.lsp')",
+    requires = {
+      { "neovim/nvim-lspconfig" },
+      {
+        "williamboman/mason.nvim",
+        run = function()
+          pcall(vim.cmd, "MasonUpdate")
+        end,
+      },
+      { "williamboman/mason-lspconfig.nvim" },
+
+      { "hrsh7th/nvim-cmp" },          -- autocompletion api
+      { "hrsh7th/cmp-nvim-lsp" },      -- lsp completions
+      { "hrsh7th/cmp-path" },          -- filesystem path completions
+      { "hrsh7th/cmp-buffer" },        -- nvim buffer completions
+      { "saadparwaiz1/cmp_luasnip" },  -- snippet completions
+      { "L3MON4D3/LuaSnip" },          -- snippet provider
+      { "onsails/lspkind.nvim" },      -- lsp completion icons
+    },
   }
 end)
