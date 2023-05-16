@@ -1,6 +1,5 @@
 -- import configs
-require("plugins")
-require("keymaps")
 require("settings")
+require("keymaps")
 require("autocmd")
-require("colorscheme")
+require("plugins")
