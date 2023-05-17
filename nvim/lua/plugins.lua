@@ -13,28 +13,23 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 return require("lazy").setup("config", {
+  defaults = { lazy = true },
   performance = {
     rtp = {
-      disabled_plugins = {
-        "2html_plugin",
-        "getscript",
-        "getscriptPlugin",
+      disabled_plugins = { -- disable plugins from runtime path
         "gzip",
-        "logipat",
+        "health",
+        "man",
         "matchit",
         "matchparen",
-        "netrw",
-        "netrwFileHandlers",
         "netrwPlugin",
-        "netrwSettings",
-        "rrhelper",
-        "spec",
-        "spellfile_plugin",
-        "tar",
+        "nvim",
+        "rplugin",
+        "shada",
+        "spellfile",
         "tarPlugin",
-        "vimball",
-        "vimballPlugin",
-        "zip",
+        "tohtml",
+        "tutor",
         "zipPlugin",
       }
     }

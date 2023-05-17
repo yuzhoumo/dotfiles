@@ -1,5 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter", -- language parse tree api
+  event = "BufReadPre",
   build = function()
     local ts_update =
     require("nvim-treesitter.install").update { with_sync = true }

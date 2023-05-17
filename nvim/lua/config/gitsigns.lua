@@ -1,5 +1,6 @@
 return {
   "lewis6991/gitsigns.nvim", -- git info in sign column/popups
+  event = "BufReadPre",
   dependencies = { "nvim-lua/plenary.nvim" },
   config = function()
     require("gitsigns").setup {

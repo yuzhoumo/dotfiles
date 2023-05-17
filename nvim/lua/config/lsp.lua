@@ -5,7 +5,9 @@ return {
     {"neovim/nvim-lspconfig"},
     {
       "williamboman/mason.nvim",
-      build = ":MasonUpdate",
+      build = function()
+        pcall(vim.cmd["MasonUpdate"])
+      end,
     },
     {"williamboman/mason-lspconfig.nvim"},
 
@@ -17,6 +19,7 @@ return {
     { "L3MON4D3/LuaSnip" },          -- snippet provider
     { "onsails/lspkind.nvim" },      -- lsp completion icons
   },
+  event = "BufReadPre",
   config = function()
     local lspzero = require("lsp-zero")
     local cmp = require("cmp")
