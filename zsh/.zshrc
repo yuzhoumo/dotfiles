@@ -198,10 +198,10 @@ alias cleanrf="find . -type f -name '._*' -ls -delete"
 alias mirror="wget --mirror --convert-links --adjust-extension --page-requisites --no-parent"
 
 # Download YouTube video as MP3 audio
-alias mp3="youtube-dl --extract-audio --audio-format mp3"
+alias mp3="yt-dlp --extract-audio --audio-format mp3"
 
 # Download YouTube video as MP4
-alias mp4="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4'"
+alias mp4="yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4'"
 
 # Merge PDF files, preserving hyperlinks
 # Usage: `mergepdf input{1,2,3}.pdf`
