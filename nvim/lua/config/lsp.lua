@@ -22,12 +22,11 @@ return {
   event = "BufReadPre",
   config = function()
     local lspzero = require("lsp-zero")
+    local lspkind = require("lspkind")
     local cmp = require("cmp")
 
-    -- minimal preset
+    -- setup lsp-zerp
     lspzero.preset({})
-
-    -- install language servers
     lspzero.ensure_installed {
       "bashls",
       "clangd",
@@ -39,6 +38,7 @@ return {
       "rust_analyzer",
       "tsserver",
     }
+    lspzero.setup()
 
     -- setup nvim-cmp
     cmp.setup {
@@ -63,15 +63,16 @@ return {
         { name = "path" },
       },
       formatting = {
-        format = require("lspkind").cmp_format { -- vscode-like icons
+        format = lspkind.cmp_format { -- vscode-like icons
+          mode = "symbol_text",
           maxwidth = 50,
           ellipsis_char = "...",
         },
       },
     }
 
-    -- set lsp keymaps for current buffer with lsp associated with it
-    -- (do not set keymaps if no lsp server for current file)
+    -- set lsp keymaps for current buffer with an associated lsp server
+    -- (does not set keymaps if no lsp server for current file)
     lspzero.on_attach(function(_, bufnr)
       local opts = { buffer = bufnr, remap = false }
 
@@ -90,6 +91,5 @@ return {
     -- configure lua language server for nvim
     require("lspconfig").lua_ls.setup(lspzero.nvim_lua_ls())
 
-    lspzero.setup()
   end
 }
