@@ -13,8 +13,27 @@ vim.o.background = "dark"
 -- set default colorscheme
 vim.cmd.colorscheme("catppuccin-mocha")
 
--- list of available colorschemes
+-- colorscheme picker options
 return {
-  "catppuccin",
+  "carbonfox",
+  "catppuccin-frappe",
+  "catppuccin-latte",
+  "catppuccin-macchiato",
+  "catppuccin-mocha",
+  "dawnfox",
+  "dayfox",
+  "duskfox",
   "gruvbox",
+  "nightfox",
+  "nordfox",
+  "oxocarbon",
+  "rose-pine",
+  "rose-pine-dawn",
+  "rose-pine-main",
+  "rose-pine-moon",
+  "terafox",
+  "tokyonight-day",
+  "tokyonight-moon",
+  "tokyonight-night",
+  "tokyonight-storm",
 }

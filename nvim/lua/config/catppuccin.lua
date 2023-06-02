@@ -1,5 +1,5 @@
 return {
-  "catppuccin/nvim", -- pastel theme
+  "catppuccin/nvim", -- colorscheme
   name = "catppuccin",
   lazy = false,
   priority = 1000,
