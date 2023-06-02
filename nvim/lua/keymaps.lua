@@ -6,12 +6,11 @@ vim.g.maplocalleader = " "
 -- don't copy single deleted characters
 vim.keymap.set("n", "x", '"_x')
 
--- tab management
-vim.keymap.set("n", "<leader>to", ":tabnew<CR>")
-vim.keymap.set("n", "<leader>tq", ":tabclose<CR>")
-vim.keymap.set("n", "<leader>tl", ":tabn<CR>")
-vim.keymap.set("n", "<leader>th", ":tabp<CR>")
-
 -- reselect after using < and > in visual mode
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
+
+-- buffer/tab management
+vim.keymap.set("n", "[b", "<CMD>bprev<CR>")
+vim.keymap.set("n", "]b", "<CMD>bnext<CR>")
+vim.keymap.set("n", "<C-w><C-n>", "<CMD>tabnew<CR>")

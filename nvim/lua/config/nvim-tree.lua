@@ -4,7 +4,7 @@ vim.g.loaded_netrwPlugin = 1
 
 return {
   "kyazdani42/nvim-tree.lua", -- file tree sidebar
-  dependencies = { "kyazdani42/nvim-web-devicons" },
+  dependencies = { "nvim-tree/nvim-web-devicons" },
   keys = { "<Leader>tn", "<Leader>tr", "<Leader>tt" },
   config = function()
     require("nvim-tree").setup()

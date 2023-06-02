@@ -2,7 +2,7 @@ return {
   "ibhagwan/fzf-lua", -- fzf file search
   keys = { "<Leader>fc", "<Leader>ff", "<Leader>fg", "<Leader>fp" },
   dependencies = {
-    "kyazdani42/nvim-web-devicons",
+    "nvim-tree/nvim-web-devicons",
     {
       "junegunn/fzf",
       build = "./install --bin",
