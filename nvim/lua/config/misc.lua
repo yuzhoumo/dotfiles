@@ -1,10 +1,10 @@
 return {
   {
-    "tpope/vim-fugitive",
+    "tpope/vim-fugitive", -- git commands in nvim
     cmd = { "G", "Git" },
-  }, -- git commands in nvim
+  },
   {
-    "tpope/vim-sleuth",
+    "tpope/vim-sleuth",   -- automatic indent width adjustment
     event = "BufReadPre",
-  },   -- automatic indent width adjustment
+  },
 }

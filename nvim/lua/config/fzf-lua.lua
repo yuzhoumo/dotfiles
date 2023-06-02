@@ -1,6 +1,6 @@
 return {
   "ibhagwan/fzf-lua", -- fzf file search
-  keys = { "<C-p>", "<C-S-p>" },
+  keys = { "<Leader>fc", "<Leader>ff", "<Leader>fg", "<Leader>fp" },
   dependencies = {
     "kyazdani42/nvim-web-devicons",
     {
@@ -10,8 +10,13 @@ return {
   },
   config = function()
     local fzf = require("fzf-lua")
-    vim.keymap.set("n", "<C-p>", fzf.files)
-    vim.keymap.set("n", "<C-s-p>", fzf.git_files)
-    vim.keymap.set("n", "<C-s>", fzf.grep_project)
+    local function colorschemes()
+      fzf.colorschemes { colors = require("../colorschemes") }
+    end
+
+    vim.keymap.set("n", "<Leader>fc", colorschemes)
+    vim.keymap.set("n", "<Leader>ff", fzf.files)
+    vim.keymap.set("n", "<Leader>fg", fzf.git_files)
+    vim.keymap.set("n", "<Leader>fp", fzf.grep_project)
   end
 }
