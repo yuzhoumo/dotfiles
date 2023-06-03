@@ -4,6 +4,9 @@ local function toggle_mode()
   else
     vim.o.background = "dark"
   end
+
+  -- reload current colorscheme
+  vim.cmd.colorscheme(vim.g.colors_name)
 end
 
 vim.keymap.set("n", "<Leader>cc", toggle_mode)
@@ -15,25 +18,9 @@ vim.cmd.colorscheme("catppuccin-mocha")
 
 -- colorscheme picker options
 return {
-  "carbonfox",
-  "catppuccin-frappe",
-  "catppuccin-latte",
-  "catppuccin-macchiato",
-  "catppuccin-mocha",
-  "dawnfox",
-  "dayfox",
-  "duskfox",
+  "catppuccin",
   "gruvbox",
-  "nightfox",
-  "nordfox",
   "oxocarbon",
   "rose-pine",
-  "rose-pine-dawn",
-  "rose-pine-main",
-  "rose-pine-moon",
-  "terafox",
-  "tokyonight-day",
-  "tokyonight-moon",
-  "tokyonight-night",
-  "tokyonight-storm",
+  "tokyonight",
 }

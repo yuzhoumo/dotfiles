@@ -6,6 +6,10 @@ return {
   config = function()
     require("catppuccin").setup {
       flavor = "mocha",
+      background = {
+        light = "latte",
+        dark = "mocha,"
+      },
       term_colors = true,
       integrations = {
         cmp = true,

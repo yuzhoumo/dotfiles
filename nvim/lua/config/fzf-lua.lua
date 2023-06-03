@@ -11,7 +11,7 @@ return {
   config = function()
     local fzf = require("fzf-lua")
     local function colorschemes()
-      fzf.colorschemes { colors = require("../colorschemes") }
+      fzf.colorschemes { colors = require("../colorschemes"), }
     end
 
     vim.keymap.set("n", "<Leader>fc", colorschemes)
