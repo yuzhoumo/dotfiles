@@ -79,7 +79,7 @@ fi
   export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
 
 ###############################################################################
-# Plugins                                                                     #
+# Plugins & Tweaks                                                            #
 ###############################################################################
 
 source ${HOME}/.config/zsh/plugins/zsh-defer/zsh-defer.plugin.zsh
@@ -95,6 +95,28 @@ zstyle :prompt:pure:path color cyan
 zstyle :prompt:pure:prompt:success color green
 zstyle :prompt:pure:prompt:error color magenta
 prompt pure
+
+# De-duplicate history
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.config/zsh/.zsh_history
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt incappendhistory
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Case-insensitive completion
+autoload -U compinit && compinit
+zstyle ':completion*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# Vim keybindings
+bindkey -v
+bindkey ^R history-incremental-search-backward
+bindkey ^s history-incremental-search-forward
 
 ###############################################################################
 # Exports                                                                     #
