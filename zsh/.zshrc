@@ -85,6 +85,7 @@ fi
 source ${HOME}/.config/zsh/plugins/zsh-defer/zsh-defer.plugin.zsh
 zsh-defer source ${HOME}/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 zsh-defer source ${HOME}/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+zsh-defer source ${HOME}/.config/zsh/plugins/zsh-nvm/zsh-nvm.plugin.zsh
 
 # Configure prompt
 fpath+=${HOME}/.config/zsh/plugins/pure
