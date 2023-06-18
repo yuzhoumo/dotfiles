@@ -118,6 +118,17 @@ bindkey -v
 bindkey ^R history-incremental-search-backward
 bindkey ^s history-incremental-search-forward
 
+# Setup fzf
+if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
+  PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
+fi
+
+# Enable fzf auto-completion
+[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
+
+# enable fzf key bindings
+source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+
 ###############################################################################
 # Exports                                                                     #
 ###############################################################################
