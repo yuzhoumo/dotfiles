@@ -126,7 +126,7 @@ fi
 # Enable fzf auto-completion
 [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
 
-# enable fzf key bindings
+# Enable fzf key bindings
 source "/usr/local/opt/fzf/shell/key-bindings.zsh"
 
 ###############################################################################
