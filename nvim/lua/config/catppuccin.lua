@@ -8,7 +8,7 @@ return {
       flavor = "mocha",
       background = {
         light = "latte",
-        dark = "mocha,"
+        dark = "mocha"
       },
       term_colors = true,
       integrations = {
