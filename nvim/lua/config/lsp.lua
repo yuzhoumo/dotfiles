@@ -19,6 +19,7 @@ return {
     { "L3MON4D3/LuaSnip" },          -- snippet provider
     { "onsails/lspkind.nvim" },      -- lsp completion icons
   },
+  cmd = { "Mason" },
   event = "BufReadPre",
   config = function()
     local lspzero = require("lsp-zero")
