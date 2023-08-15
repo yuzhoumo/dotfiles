@@ -86,6 +86,7 @@ source ${HOME}/.config/zsh/plugins/zsh-defer/zsh-defer.plugin.zsh
 zsh-defer source ${HOME}/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 zsh-defer source ${HOME}/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 zsh-defer source ${HOME}/.config/zsh/plugins/zsh-nvm/zsh-nvm.plugin.zsh
+zsh-defer source ${HOME}/.config/zsh/plugins/zsh-fzf/zsh-fzf.plugin.zsh
 
 # Configure prompt
 fpath+=${HOME}/.config/zsh/plugins/pure
@@ -117,17 +118,6 @@ zstyle ':completion*' matcher-list 'm:{a-z}={A-Za-z}'
 bindkey -v
 bindkey ^R history-incremental-search-backward
 bindkey ^s history-incremental-search-forward
-
-# Setup fzf
-if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
-  PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
-fi
-
-# Enable fzf auto-completion
-[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
-
-# Enable fzf key bindings
-source "/usr/local/opt/fzf/shell/key-bindings.zsh"
 
 ###############################################################################
 # Exports                                                                     #
