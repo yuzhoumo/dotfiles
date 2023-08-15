@@ -9,8 +9,11 @@ if [ $(uname -s) = 'Darwin' ]; then
   export HOMEBREW_NO_INSECURE_REDIRECT=1
   export HOMEBREW_CASK_OPTS=--require-s
 
-  # Add Homebrew sbin to path
-  export PATH="/usr/local/sbin:$PATH"
+  # Add Homebrew to path
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+
+  # Use GNU find instead of macos
+  PATH=$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH
 
   # Avoid issues with `gpg` as installed via Homebrew.
   # https://stackoverflow.com/a/42265848/96656
