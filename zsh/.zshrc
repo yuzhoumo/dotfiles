@@ -85,11 +85,15 @@ fi
 # Plugins & Tweaks                                                            #
 ###############################################################################
 
-source ${HOME}/.config/zsh/plugins/zsh-defer/zsh-defer.plugin.zsh
-zsh-defer source ${HOME}/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-zsh-defer source ${HOME}/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-zsh-defer source ${HOME}/.config/zsh/plugins/zsh-nvm/zsh-nvm.plugin.zsh
-zsh-defer source ${HOME}/.config/zsh/plugins/zsh-fzf/zsh-fzf.plugin.zsh
+# Source extra configs if available (not committed to git)
+[ -e "${HOME}/.config/zsh/extra.zsh" ] && . "${HOME}/.config/zsh/extra.zsh"
+
+# Lazy-load plugins
+. "${HOME}/.config/zsh/plugins/zsh-defer/zsh-defer.plugin.zsh"
+zsh-defer . "${HOME}/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+zsh-defer . "${HOME}/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+zsh-defer . "${HOME}/.config/zsh/plugins/zsh-nvm/zsh-nvm.plugin.zsh"
+zsh-defer . "${HOME}/.config/zsh/plugins/zsh-fzf/zsh-fzf.plugin.zsh"
 
 # Configure prompt
 fpath+=${HOME}/.config/zsh/plugins/pure
