@@ -82,6 +82,36 @@ fi
   export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
 
 ###############################################################################
+# Exports                                                                     #
+###############################################################################
+
+# Set term env var for kitty
+export TERM=xterm-256color
+
+# Make neovim the default editor
+export EDITOR='nvim'
+
+# Omit duplicates and commands that begin with a space from history
+export HISTCONTROL='ignoreboth'
+
+# Prefer US English and use UTF-8
+export LANG='en_US.UTF-8'
+export LC_ALL='en_US.UTF-8'
+
+# Highlight section titles in manual pages
+export LESS_TERMCAP_md="${yellow}"
+
+# Make Python use UTF-8 encoding for output to stdin, stdout, and stderr
+export PYTHONIOENCODING='UTF-8'
+
+# Set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Add zsh-fzf to bin
+export PATH="$HOME/.config/zsh/plugins/zsh-fzf/bin:$PATH"
+###############################################################################
 # Plugins & Tweaks                                                            #
 ###############################################################################
 
@@ -93,7 +123,7 @@ fi
 zsh-defer . "${HOME}/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 zsh-defer . "${HOME}/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 zsh-defer . "${HOME}/.config/zsh/plugins/zsh-nvm/zsh-nvm.plugin.zsh"
-zsh-defer . "${HOME}/.config/zsh/plugins/zsh-fzf/zsh-fzf.plugin.zsh"
+zsh-defer . "${HOME}/.config/zsh/plugins/zsh-fzf/fzf-zsh-plugin.plugin.zsh"
 
 # Configure prompt
 fpath+=${HOME}/.config/zsh/plugins/pure
@@ -125,34 +155,6 @@ zstyle ':completion*' matcher-list 'm:{a-z}={A-Za-z}'
 bindkey -v
 bindkey ^R history-incremental-search-backward
 bindkey ^s history-incremental-search-forward
-
-###############################################################################
-# Exports                                                                     #
-###############################################################################
-
-# Set term env var for kitty
-export TERM=xterm-256color
-
-# Make neovim the default editor
-export EDITOR='nvim'
-
-# Omit duplicates and commands that begin with a space from history
-export HISTCONTROL='ignoreboth'
-
-# Prefer US English and use UTF-8
-export LANG='en_US.UTF-8'
-export LC_ALL='en_US.UTF-8'
-
-# Highlight section titles in manual pages
-export LESS_TERMCAP_md="${yellow}"
-
-# Make Python use UTF-8 encoding for output to stdin, stdout, and stderr
-export PYTHONIOENCODING='UTF-8'
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
-    export PATH="$HOME/.local/bin:$PATH"
-fi
 
 ###############################################################################
 # Re-Bindings and Shortcuts                                                   #
