@@ -31,13 +31,35 @@ export PYTHONIOENCODING="UTF-8"
 # Python runs this file before interactive prompts
 export PYTHONSTARTUP="${HOME}/.config/python/startup.py"
 
+# Write `less` history file to ~/.cache
+export LESSHISTFILE="${HOME}/.cache/lesshst"
+
+# Set zsh history file to ~/.cache
+export HISTFILE="${HOME}/.cache/zsh_history"
+
+# Write Xauthority file to ~/.cache
+export XAUTHORITY="${HOME}/.cache/Xauthority"
+
+# Set nvm install location
+export NVM_DIR="${HOME}/.local/share/nvm"
+
+# Set fzf install location
+export FZF_PATH="${HOME}/.local/share/fzf"
+
+# Set go location
+export GOPATH="${HOME}/.local/share/go"
+
+# Set rust locations
+export CARGO_HOME="${HOME}/.local/share/cargo"
+export RUSTUP_HOME="${HOME}/.local/share/rustup"
+
 # Set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
-    export PATH="$HOME/.local/bin:$PATH"
+if [ -d "${HOME}/.local/bin" ] && [[ ":${PATH}:" != *":${HOME}/.local/bin:"* ]]; then
+    export PATH="${HOME}/.local/bin:${PATH}"
 fi
 
 # Add zsh-fzf to bin
-export PATH="$HOME/.config/zsh/plugins/zsh-fzf/bin:$PATH"
+export PATH="${HOME}/.config/zsh/plugins/zsh-fzf/bin:${PATH}"
 
 ###############################################################################
 # OS Specific                                                                 #
@@ -101,6 +123,28 @@ else
   export SDL_IM_MODULE="ibus"
   export XMODIFIERS="@im=ibus"
 
+  # Write `less` history file to xdg cache home
+  export LESSHISTFILE="${XDG_CACHE_HOME}/lesshst"
+
+  # Set zsh history file to xdg cache home
+  export HISTFILE="${XDG_CACHE_HOME}/zsh_history"
+
+  # Write Xauthority file to xdg runtime dir
+  export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
+
+  # Set nvm install location to xdg data home
+  export NVM_DIR="${XDG_DATA_HOME}/nvm"
+
+  # Set fzf install location to xdg data home
+  export FZF_PATH="${XDG_DATA_HOME}/fzf"
+
+  # Set rust locations to xdg data home
+  export CARGO_HOME="${XDG_DATA_HOME}/cargo"
+  export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
+
+  # Set go location to xdg data home
+  export GOPATH="${XDG_DATA_HOME}/go"
+
   # Set kitty to use ibus
   alias kitty="GLFW_IM_MODULE=ibus command kitty"
 
@@ -145,7 +189,6 @@ prompt pure
 # De-duplicate history
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=~/.config/zsh/.zsh_history
 HISTDUP=erase
 setopt appendhistory
 setopt sharehistory

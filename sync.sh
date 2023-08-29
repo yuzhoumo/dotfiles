@@ -41,8 +41,7 @@ mkdir -p "${CODE_DIR}" && \
 
 # git config
 mkdir -p "${HOME}/.config/git/" && \
-  cp -r git/. "${HOME}/.config/git/." && \
-  mv "${HOME}/.config/git/.gitconfig" "${HOME}/.gitconfig"
+  cp -r git/. "${HOME}/.config/git/."
 
 # neovim config
 mkdir -p "${HOME}/.config/nvim/" && \
