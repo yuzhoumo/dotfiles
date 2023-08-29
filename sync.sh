@@ -48,6 +48,10 @@ mkdir -p "${HOME}/.config/git/" && \
 mkdir -p "${HOME}/.config/nvim/" && \
   cp -r nvim/. "${HOME}/.config/nvim/."
 
+# python config
+mkdir -p "${HOME}/.config/python/" && \
+  cp -r python/. "${HOME}/.config/python/."
+
 # tmux config
 mkdir -p "${HOME}/.config/tmux/" && \
   cp -r tmux/. "${HOME}/.config/tmux/."
