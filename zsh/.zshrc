@@ -49,6 +49,9 @@ export FZF_PATH="${HOME}/.local/share/fzf"
 # Set go location
 export GOPATH="${HOME}/.local/share/go"
 
+# Set gpg location
+export GNUPGHOME="${HOME}/.local/share/gnupg"
+
 # Set rust locations
 export CARGO_HOME="${HOME}/.local/share/cargo"
 export RUSTUP_HOME="${HOME}/.local/share/rustup"
@@ -144,6 +147,9 @@ else
 
   # Set go location to xdg data home
   export GOPATH="${XDG_DATA_HOME}/go"
+
+  # Set gpg location to xdg data home
+  export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
 
   # Set kitty to use ibus
   alias kitty="GLFW_IM_MODULE=ibus command kitty"
