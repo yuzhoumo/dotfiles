@@ -37,9 +37,6 @@ export LESSHISTFILE="${HOME}/.cache/lesshst"
 # Set zsh history file to ~/.cache
 export HISTFILE="${HOME}/.cache/zsh_history"
 
-# Write Xauthority file to ~/.cache
-export XAUTHORITY="${HOME}/.cache/Xauthority"
-
 # Set nvm install location
 export NVM_DIR="${HOME}/.local/share/nvm"
 
@@ -131,9 +128,6 @@ else
 
   # Set zsh history file to xdg cache home
   export HISTFILE="${XDG_CACHE_HOME}/zsh_history"
-
-  # Write Xauthority file to xdg runtime dir
-  export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
 
   # Set nvm install location to xdg data home
   export NVM_DIR="${XDG_DATA_HOME}/nvm"
