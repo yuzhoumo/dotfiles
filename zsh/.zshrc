@@ -1,4 +1,42 @@
 ###############################################################################
+# Extras                                                                      #
+###############################################################################
+
+# Source extra configs if available (not committed to git)
+[ -e "${HOME}/.config/zsh/extra.zsh" ] && . "${HOME}/.config/zsh/extra.zsh"
+
+###############################################################################
+# Exports                                                                     #
+###############################################################################
+
+# Set term env var for kitty
+export TERM=xterm-256color
+
+# Make neovim the default editor
+export EDITOR='nvim'
+
+# Omit duplicates and commands that begin with a space from history
+export HISTCONTROL='ignoreboth'
+
+# Prefer US English and use UTF-8
+export LANG='en_US.UTF-8'
+export LC_ALL='en_US.UTF-8'
+
+# Highlight section titles in manual pages
+export LESS_TERMCAP_md="${yellow}"
+
+# Make Python use UTF-8 encoding for output to stdin, stdout, and stderr
+export PYTHONIOENCODING='UTF-8'
+
+# Set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Add zsh-fzf to bin
+export PATH="$HOME/.config/zsh/plugins/zsh-fzf/bin:$PATH"
+
+###############################################################################
 # OS Specific                                                                 #
 ###############################################################################
 
@@ -82,41 +120,8 @@ fi
   export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
 
 ###############################################################################
-# Exports                                                                     #
-###############################################################################
-
-# Set term env var for kitty
-export TERM=xterm-256color
-
-# Make neovim the default editor
-export EDITOR='nvim'
-
-# Omit duplicates and commands that begin with a space from history
-export HISTCONTROL='ignoreboth'
-
-# Prefer US English and use UTF-8
-export LANG='en_US.UTF-8'
-export LC_ALL='en_US.UTF-8'
-
-# Highlight section titles in manual pages
-export LESS_TERMCAP_md="${yellow}"
-
-# Make Python use UTF-8 encoding for output to stdin, stdout, and stderr
-export PYTHONIOENCODING='UTF-8'
-
-# Set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
-    export PATH="$HOME/.local/bin:$PATH"
-fi
-
-# Add zsh-fzf to bin
-export PATH="$HOME/.config/zsh/plugins/zsh-fzf/bin:$PATH"
-###############################################################################
 # Plugins & Tweaks                                                            #
 ###############################################################################
-
-# Source extra configs if available (not committed to git)
-[ -e "${HOME}/.config/zsh/extra.zsh" ] && . "${HOME}/.config/zsh/extra.zsh"
 
 # Lazy-load plugins
 . "${HOME}/.config/zsh/plugins/zsh-defer/zsh-defer.plugin.zsh"
