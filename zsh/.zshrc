@@ -123,28 +123,6 @@ else
   export SDL_IM_MODULE="ibus"
   export XMODIFIERS="@im=ibus"
 
-  # Write `less` history file to xdg cache home
-  export LESSHISTFILE="${XDG_CACHE_HOME}/lesshst"
-
-  # Set zsh history file to xdg cache home
-  export HISTFILE="${XDG_CACHE_HOME}/zsh_history"
-
-  # Set nvm install location to xdg data home
-  export NVM_DIR="${XDG_DATA_HOME}/nvm"
-
-  # Set fzf install location to xdg data home
-  export FZF_PATH="${XDG_DATA_HOME}/fzf"
-
-  # Set rust locations to xdg data home
-  export CARGO_HOME="${XDG_DATA_HOME}/cargo"
-  export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
-
-  # Set go location to xdg data home
-  export GOPATH="${XDG_DATA_HOME}/go"
-
-  # Set gpg location to xdg data home
-  export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
-
   # Set kitty to use ibus
   alias kitty="GLFW_IM_MODULE=ibus command kitty"
 
