@@ -6,7 +6,7 @@
 # navigate to current directory
 cd "$(dirname "${0}")" || exit
 
-if [ -d /proc/version ] && grep -q microsoft /proc/version; then # WSL
+if [ -f /proc/version ] && grep -q microsoft /proc/version; then # WSL
 
   # directory for git repos
   CODE_DIR="${HOME}/code"
