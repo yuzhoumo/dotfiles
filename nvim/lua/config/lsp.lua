@@ -30,6 +30,7 @@ return {
       "bashls",
       "clangd",
       "cssls",
+      "gopls",
       "html",
       "jdtls",
       "lua_ls",
