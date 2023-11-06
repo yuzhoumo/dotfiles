@@ -1,6 +1,7 @@
 return {
   "VonHeikemen/lsp-zero.nvim", -- lsp and autocompletion
-  branch = "v2.x",
+  branch = "v3.x",
+  event = "BufReadPre",
   dependencies = {
     {"neovim/nvim-lspconfig"},
     {
@@ -20,25 +21,35 @@ return {
     { "onsails/lspkind.nvim" },      -- lsp completion icons
   },
   config = function()
-    local lspzero = require("lsp-zero")
-    local lspkind = require("lspkind")
+    local lsp_zero = require("lsp-zero")
+    local lsp_kind = require("lspkind")
     local cmp = require("cmp")
+    local mason = require("mason")
+    local mason_lspconfig = require("mason-lspconfig");
 
-    -- setup lsp-zerp
-    lspzero.preset({})
-    lspzero.ensure_installed {
-      "bashls",
-      "clangd",
-      "cssls",
-      "gopls",
-      "html",
-      "jdtls",
-      "lua_ls",
-      "pyright",
-      "rust_analyzer",
-      "tsserver",
-    }
-    lspzero.setup()
+    -- setup mason
+    mason.setup({})
+    mason_lspconfig.setup({
+      ensure_installed = {
+        "bashls",
+        "clangd",
+        "cssls",
+        "gopls",
+        "html",
+        "jdtls",
+        "lua_ls",
+        "pyright",
+        "rust_analyzer",
+        "tsserver",
+      },
+      handlers = {
+        lsp_zero.default_setup,
+        lua_ls = function()
+          local lua_opts = lsp_zero.nvim_lua_ls()
+          require('lspconfig').lua_ls.setup(lua_opts)
+        end, -- configure lua language server for nvim
+      },
+    })
 
     -- setup nvim-cmp
     cmp.setup {
@@ -63,7 +74,7 @@ return {
         { name = "path" },
       },
       formatting = {
-        format = lspkind.cmp_format { -- vscode-like icons
+        format = lsp_kind.cmp_format { -- vscode-like icons
           mode = "symbol_text",
           maxwidth = 50,
           ellipsis_char = "...",
@@ -73,7 +84,7 @@ return {
 
     -- set lsp keymaps for current buffer with an associated lsp server
     -- (does not set keymaps if no lsp server for current file)
-    lspzero.on_attach(function(_, bufnr)
+    lsp_zero.on_attach(function(_, bufnr)
       local opts = { buffer = bufnr, remap = false }
 
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
@@ -87,9 +98,6 @@ return {
       vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
       vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
     end)
-
-    -- configure lua language server for nvim
-    require("lspconfig").lua_ls.setup(lspzero.nvim_lua_ls())
 
   end
 }
