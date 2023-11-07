@@ -14,7 +14,7 @@ vim.opt.expandtab = true
 
 -- invisible trailing characters
 vim.opt.list = true
-vim.opt.listchars:append("tab:▸ ")
+vim.opt.listchars:append("tab:▎ ")
 vim.opt.listchars:append("trail:⋅")
 vim.opt.listchars:append("eol:↴")
 vim.opt.listchars:append("nbsp:_")
