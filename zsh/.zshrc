@@ -52,6 +52,7 @@ export GNUPGHOME="${HOME}/.local/share/gnupg"
 # Set rust locations
 export CARGO_HOME="${HOME}/.local/share/cargo"
 export RUSTUP_HOME="${HOME}/.local/share/rustup"
+export PATH="${RUSTUP_HOME}:${PATH}"
 
 # Set PATH so it includes user's private bin if it exists
 if [ -d "${HOME}/.local/bin" ] && [[ ":${PATH}:" != *":${HOME}/.local/bin:"* ]]; then
