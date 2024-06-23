@@ -68,6 +68,13 @@ export PATH="${HOME}/.config/zsh/plugins/zsh-fzf/bin:${PATH}"
 
 if [ $(uname -s) = 'Darwin' ]; then
 
+  # Set pnpm home
+  export PNPM_HOME="/Users/${USER}/Library/pnpm"
+  case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+  esac
+
   # Homebrew security and privacy settings
   export HOMEBREW_NO_ANALYTICS=1
   export HOMEBREW_NO_INSECURE_REDIRECT=1
@@ -95,6 +102,20 @@ if [ $(uname -s) = 'Darwin' ]; then
 
   # Get local ip address
   alias locip="ipconfig getifaddr en0"
+
+  # Aliases for Apple Airport tool
+  alias airport="/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport"
+  alias sniff >/dev/null 2>&1 && unalias sniff
+  function sniff() {
+    local channel="${1:-1}"
+    sudo /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport en0 sniff "$channel"
+  }
+
+  # Change the mac address of the wireless interface
+  alias mac="sudo ifconfig en0 ether"
+
+  # Randomize the mac address of the wireless interface
+  alias randmac="mac $(openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//')"
 
 elif grep -q microsoft /proc/version; then
 
@@ -149,15 +170,18 @@ fi
 # Plugins & Tweaks                                                            #
 ###############################################################################
 
+# Define plugin directory
+plugdir="${HOME}/.config/zsh/plugins"
+
 # Lazy-load plugins
-. "${HOME}/.config/zsh/plugins/zsh-defer/zsh-defer.plugin.zsh"
-zsh-defer . "${HOME}/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-zsh-defer . "${HOME}/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-zsh-defer . "${HOME}/.config/zsh/plugins/zsh-nvm/zsh-nvm.plugin.zsh"
-zsh-defer . "${HOME}/.config/zsh/plugins/zsh-fzf/fzf-zsh-plugin.plugin.zsh"
+. "${plugdir}/zsh-defer/zsh-defer.plugin.zsh"
+zsh-defer . "${plugdir}/zsh-autosuggestions/zsh-autosuggestions.zsh"
+zsh-defer . "${plugdir}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+zsh-defer . "${plugdir}/zsh-nvm/zsh-nvm.plugin.zsh"
+zsh-defer . "${plugdir}/zsh-fzf/fzf-zsh-plugin.plugin.zsh"
 
 # Configure prompt
-fpath+=${HOME}/.config/zsh/plugins/pure
+fpath+="${plugdir}/pure"
 autoload -U promptinit; promptinit
 zstyle :prompt:pure:git:stash show yes
 zstyle :prompt:pure:path color cyan
@@ -166,8 +190,8 @@ zstyle :prompt:pure:prompt:error color magenta
 prompt pure
 
 # De-duplicate history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 HISTDUP=erase
 setopt appendhistory
 setopt sharehistory
