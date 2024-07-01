@@ -1,4 +1,19 @@
+require("utils")
+
 vim.api.nvim_create_augroup("misc", { clear = true })
+
+-- detect minified files (files with long lines)
+vim.api.nvim_create_autocmd({ "Syntax" }, {
+  callback = function()
+    vim.b.has_long_line = buf_has_long_line()
+    if vim.b.has_long_line then
+      print("Minified file detected: Entering lightweight mode")
+      set_lightweight_mode()
+    end
+  end,
+  group = "misc",
+  pattern = "*",
+})
 
 -- highlight selection on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -9,13 +24,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
 })
 
--- strip trailing whitespace
-vim.api.nvim_create_autocmd('BufWritePre', {
+-- auto-strip trailing whitespace
+vim.api.nvim_create_autocmd("BufWritePre", {
+  callback = strip_trailng_whitespace,
   group = "misc",
-  pattern = '*',
-  callback = function()
-    local cursor = vim.api.nvim_win_get_cursor(0)
-    vim.api.nvim_command("%s/\\s\\+$//e")
-    vim.api.nvim_win_set_cursor(0, cursor)
-  end,
+  pattern = "*",
 })

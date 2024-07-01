@@ -46,6 +46,10 @@ return {
         lsp_zero.default_setup,
         lua_ls = function()
           local lua_opts = lsp_zero.nvim_lua_ls()
+
+          -- disable lowercase-global warnings
+          lua_opts.settings.Lua.diagnostics.disable = {"lowercase-global"}
+
           require('lspconfig').lua_ls.setup(lua_opts)
         end, -- configure lua language server for nvim
       },
