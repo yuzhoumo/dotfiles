@@ -63,6 +63,15 @@ fi
 export PATH="${HOME}/.config/zsh/plugins/zsh-fzf/bin:${PATH}"
 
 ###############################################################################
+# Terminal Specific                                                           #
+###############################################################################
+
+if [[ -n "$KITTY_WINDOW_ID" ]]; then
+  alias light="kitten @set-colors --all /Users/ppanda/.config/kitty/themes/latte.conf"
+  alias dark="kitten @set-colors --all /Users/ppanda/.config/kitty/themes/mocha.conf"
+fi
+
+###############################################################################
 # OS Specific                                                                 #
 ###############################################################################
 
