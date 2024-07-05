@@ -12,6 +12,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- extend % to match more pairs such as html tags
+vim.cmd("runtime macros/matchit.vim")
+
 return require("lazy").setup("config", {
   defaults = { lazy = true },
   performance = {
@@ -20,7 +23,6 @@ return require("lazy").setup("config", {
         "gzip",
         "health",
         "man",
-        "matchit",
         "matchparen",
         "netrwPlugin",
         "nvim",

@@ -1,6 +1,3 @@
--- disable plugin keymaps
-vim.g.no_plugin_maps = 1
-
 -- search start/end of file for vim modelines
 vim.opt.modelines = 5
 
