@@ -10,7 +10,7 @@ return {
     require("nvim-tree").setup()
     local api = require("nvim-tree.api")
     local function find_file()
-      api.tree.find_file { open = true }
+      api.tree.find_file { open = true, focus = true }
     end
 
     vim.keymap.set("n", "<Leader>tn", find_file)
