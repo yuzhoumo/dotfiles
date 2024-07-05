@@ -39,9 +39,6 @@ vim.opt.wrap = false
 -- sign column (for plugins that need it)
 vim.opt.signcolumn = "yes"
 
--- terminal true color
-vim.opt.termguicolors = true
-
 -- plugin execution timeout (ms after typing)
 vim.opt.updatetime = 1000
 

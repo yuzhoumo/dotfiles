@@ -1,7 +1,9 @@
 require("utils")
 
+-- create augroups
 vim.api.nvim_create_augroup("misc", { clear = true })
 vim.api.nvim_create_augroup("lightweight_mode", { clear = true })
+vim.api.nvim_create_augroup('kitty_cursor', { clear = true })
 
 -- disable resource-intensive features on minified files
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
@@ -47,4 +49,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   callback = strip_trailng_whitespace,
   group = "misc",
   pattern = "*",
+})
+
+-- Fix issue where cursor color doesn't change in kitty
+-- https://github.com/neovim/neovim/issues/12626
+vim.api.nvim_create_autocmd({"UIEnter", "Colorscheme"}, {
+  group = "kitty_cursor",
+  callback = function()
+    vim.opt.guicursor = "n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor"
+  end,
 })
