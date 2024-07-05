@@ -1,17 +1,35 @@
 require("utils")
 
 vim.api.nvim_create_augroup("misc", { clear = true })
+vim.api.nvim_create_augroup("lightweight_mode", { clear = true })
 
--- detect minified files (files with long lines)
-vim.api.nvim_create_autocmd({ "Syntax" }, {
+-- disable resource-intensive features on minified files
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
   callback = function()
     vim.b.has_long_line = buf_has_long_line()
     if vim.b.has_long_line then
       print("Minified file detected: Entering lightweight mode")
-      set_lightweight_mode()
+
+      vim.cmd("TSBufDisable highlight")
+      vim.cmd("TSBufDisable indent")
+      vim.cmd("TSBufDisable autotag")
+
+      vim.opt_local.cursorline = false
+      vim.opt_local.spell = false
     end
   end,
-  group = "misc",
+  group = "lightweight_mode",
+  pattern = "*",
+})
+
+-- deferred to prevent "sytax off" from being overridden
+vim.api.nvim_create_autocmd({ "UIEnter", "BufEnter" }, {
+  callback = function()
+    if vim.b.has_long_line then
+      vim.cmd("syntax off")
+    end
+  end,
+  group = "lightweight_mode",
   pattern = "*",
 })
 

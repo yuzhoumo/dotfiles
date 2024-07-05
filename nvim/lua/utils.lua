@@ -1,14 +1,3 @@
--- disable resource-intensive features
-function set_lightweight_mode()
-  if vim.fn.exists(":IndentBlanklineDisable") == 1 then
-    vim.cmd("IndentBlanklineDisable")
-  end
-  vim.cmd("syntax off")
-  vim.cmd("filetype off")
-  vim.opt_local.foldmethod = "manual"
-  vim.opt_local.spell = false
-end
-
 -- check if current buffer has long lines
 function buf_has_long_line()
   local threshold = 1000
