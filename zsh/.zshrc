@@ -28,8 +28,8 @@ export LESS_TERMCAP_md="${yellow}"
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr
 export PYTHONIOENCODING="UTF-8"
 
-# Python runs this file before interactive prompts
-export PYTHONSTARTUP="${HOME}/.config/python/startup.py"
+# Set python history location
+export PYTHON_HISTORY="${HOME}/.cache/python_history"
 
 # Write `less` history file to ~/.cache
 export LESSHISTFILE="${HOME}/.cache/lesshst"
