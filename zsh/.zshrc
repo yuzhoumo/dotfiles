@@ -28,7 +28,7 @@ export LESS_TERMCAP_md="${yellow}"
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr
 export PYTHONIOENCODING="UTF-8"
 
-# Set python history location
+# Set python history file to ~/.cache
 export PYTHON_HISTORY="${HOME}/.cache/python_history"
 
 # Write `less` history file to ~/.cache
@@ -36,6 +36,13 @@ export LESSHISTFILE="${HOME}/.cache/lesshst"
 
 # Set zsh history file to ~/.cache
 export HISTFILE="${HOME}/.cache/zsh_history"
+
+# Set node repl history file to ~/.cache
+export NODE_REPL_HISTORY="${HOME}/.cache/.node_repl_history"
+
+# Set gem/bundle install locaion
+export GEM_HOME="${HOME}/.local/share/gem"
+export BUNDLE_USER_HOME="${HOME}/.local/share/bundle"
 
 # Set nvm install location
 export NVM_DIR="${HOME}/.local/share/nvm"
@@ -53,6 +60,9 @@ export GNUPGHOME="${HOME}/.local/share/gnupg"
 export CARGO_HOME="${HOME}/.local/share/cargo"
 export RUSTUP_HOME="${HOME}/.local/share/rustup"
 export PATH="${RUSTUP_HOME}:${PATH}"
+
+# Set docker location
+export DOCKER_CONFIG="${HOME}/.config/docker"
 
 # Set PATH so it includes user's private bin if it exists
 if [ -d "${HOME}/.local/bin" ] && [[ ":${PATH}:" != *":${HOME}/.local/bin:"* ]]; then
