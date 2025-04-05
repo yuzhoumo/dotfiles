@@ -20,6 +20,9 @@ else # macOS and Linux
   mkdir -p "${HOME}/.config/kitty" && \
     cp -r kitty/. "${HOME}/.config/kitty/."
 
+  # ghostty config
+  mkdir -p "${HOME}/.config/ghostty" && \
+    cp -r ghostty/. "${HOME}/.config/ghostty/."
 fi
 
 # note: period after trailing slash is significant to ensure consistent
