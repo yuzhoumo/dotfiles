@@ -107,7 +107,7 @@ if [ $(uname -s) = 'Darwin' ]; then
 
   # Avoid issues with `gpg` as installed via Homebrew.
   # https://stackoverflow.com/a/42265848/96656
-  export GPG_TTY=$(tty);
+  export GPG_TTY=$TTY
 
   # Set work directory for git repos
   export CODE_DIR="${HOME}/Code"
@@ -121,20 +121,6 @@ if [ $(uname -s) = 'Darwin' ]; then
 
   # Get local ip address
   alias locip="ipconfig getifaddr en0"
-
-  # Aliases for Apple Airport tool
-  alias airport="/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport"
-  alias sniff >/dev/null 2>&1 && unalias sniff
-  function sniff() {
-    local channel="${1:-1}"
-    sudo /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport en0 sniff "$channel"
-  }
-
-  # Change the mac address of the wireless interface
-  alias mac="sudo ifconfig en0 ether"
-
-  # Randomize the mac address of the wireless interface
-  alias randmac="mac $(openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//')"
 
 elif grep -q microsoft /proc/version; then
 
@@ -178,12 +164,6 @@ else
   alias pbpaste="xclip -selection clipboard -o"
 
 fi
-
-# Source NIX env and export locales if installed
-# https://nixos.wiki/wiki/Locales
-[ -d ~/.nix-profile ] && \
-  . ~/.nix-profile/etc/profile.d/nix.sh && \
-  export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
 
 ###############################################################################
 # Plugins & Tweaks                                                            #
@@ -279,8 +259,6 @@ alias pan="cd ${CODE_DIR}/ppanda"
 alias con="cd ${CODE_DIR}/yuzhoumo/configs"
 alias dot="cd ${CODE_DIR}/yuzhoumo/dotfiles"
 alias syncdot="${CODE_DIR}/yuzhoumo/dotfiles/sync.sh && reload"
-alias editvim="vim ${CODE_DIR}/yuzhoumo/dotfiles/nvim/init.lua"
-alias editzsh="vim ${CODE_DIR}/yuzhoumo/dotfiles/zsh/.zshrc"
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec ${SHELL} -l"
@@ -297,9 +275,6 @@ alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
 # Recursively delete MacOS `.DS_Store` files
 alias cleands="find . -type f -name '*.DS_Store' -ls -delete"
 
-# Recursively delete MacOS resource forks (files starting with `._`)
-alias cleanrf="find . -type f -name '._*' -ls -delete"
-
 # Mirror site for offline browsing using wget
 alias mirror="wget --mirror --convert-links --adjust-extension --page-requisites --no-parent"
 
@@ -315,11 +290,6 @@ alias mergepdf='gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=_merged.p
 
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
-
-# One of @janmoesen’s ProTip™s
-for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-  alias "${method}"="lwp-request -m '${method}'"
-done
 
 # Canonical hex dump; some systems have this symlinked
 command -v hd > /dev/null || alias hd="hexdump -C"
