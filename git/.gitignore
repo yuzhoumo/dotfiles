@@ -18,6 +18,3 @@ node_modules/
 .vscode/
 *.bak
 *.swp
-tags
-tags.temp
-tags.lock
