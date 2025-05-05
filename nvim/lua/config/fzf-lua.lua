@@ -1,12 +1,6 @@
 return {
   "ibhagwan/fzf-lua", -- fzf file search
-  keys = {
-    "<Leader>fc",
-    "<Leader>ff",
-    "<Leader>fg",
-    "<Leader>fp",
-    "<Leader>fb",
-  },
+  lazy = false,
   dependencies = {
     "nvim-tree/nvim-web-devicons",
     {
@@ -19,6 +13,9 @@ return {
     local function colorschemes()
       fzf.colorschemes { colors = require("../colorschemes"), }
     end
+
+    -- register fzf-lua as default ui selector
+    fzf.register_ui_select()
 
     vim.keymap.set("n", "<Leader>fc", colorschemes)
     vim.keymap.set("n", "<Leader>ff", fzf.files)
