@@ -38,7 +38,7 @@ export LESSHISTFILE="${HOME}/.cache/lesshst"
 export HISTFILE="${HOME}/.cache/zsh_history"
 
 # Set node repl history file to ~/.cache
-export NODE_REPL_HISTORY="${HOME}/.cache/.node_repl_history"
+export NODE_REPL_HISTORY="${HOME}/.cache/node_repl_history"
 
 # Set gem/bundle install locaion
 export GEM_HOME="${HOME}/.local/share/gem"
@@ -56,11 +56,6 @@ export GOPATH="${HOME}/.local/share/go"
 # Set gpg location
 export GNUPGHOME="${HOME}/.local/share/gnupg"
 
-# Set rust locations
-export CARGO_HOME="${HOME}/.local/share/cargo"
-export RUSTUP_HOME="${HOME}/.local/share/rustup"
-export PATH="${RUSTUP_HOME}:${PATH}"
-
 # Set docker location
 export DOCKER_CONFIG="${HOME}/.config/docker"
 
@@ -77,8 +72,8 @@ export PATH="${HOME}/.config/zsh/plugins/zsh-fzf/bin:${PATH}"
 ###############################################################################
 
 if [[ -n "$KITTY_WINDOW_ID" ]]; then
-  alias light="kitten @set-colors --all /Users/ppanda/.config/kitty/themes/latte.conf"
-  alias dark="kitten @set-colors --all /Users/ppanda/.config/kitty/themes/mocha.conf"
+  alias light="kitten @set-colors --all ${HOME}/.config/kitty/themes/latte.conf"
+  alias dark="kitten @set-colors --all ${HOME}/.config/kitty/themes/mocha.conf"
 fi
 
 ###############################################################################
@@ -103,7 +98,7 @@ if [ $(uname -s) = 'Darwin' ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 
   # Use GNU find instead of macos
-  PATH=$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH
+  PATH=/opt/homebrew/opt/findutils/libexec/gnubin:$PATH
 
   # Avoid issues with `gpg` as installed via Homebrew.
   # https://stackoverflow.com/a/42265848/96656
@@ -172,13 +167,6 @@ fi
 # Define plugin directory
 plugdir="${HOME}/.config/zsh/plugins"
 
-# Lazy-load plugins
-. "${plugdir}/zsh-defer/zsh-defer.plugin.zsh"
-zsh-defer . "${plugdir}/zsh-autosuggestions/zsh-autosuggestions.zsh"
-zsh-defer . "${plugdir}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-zsh-defer . "${plugdir}/zsh-nvm/zsh-nvm.plugin.zsh"
-zsh-defer . "${plugdir}/zsh-fzf/fzf-zsh-plugin.plugin.zsh"
-
 # Configure prompt
 fpath+="${plugdir}/pure"
 autoload -U promptinit; promptinit
@@ -200,14 +188,36 @@ setopt hist_save_no_dups
 setopt hist_find_no_dups
 setopt extended_history
 
-# Case-insensitive completion
-autoload -U compinit && compinit
-zstyle ':completion*' matcher-list 'm:{a-z}={A-Za-z}'
-
-# Vim keybindings
+# Enable vim keybindings
 bindkey -v
+
+# FZF keybindings
 bindkey ^R history-incremental-search-backward
 bindkey ^s history-incremental-search-forward
+
+# Load zsh-defer plugin
+. "${plugdir}/zsh-defer/zsh-defer.plugin.zsh"
+
+function deferred_init() {
+  # Smarter compinit
+  autoload -Uz compinit
+  if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+    compinit
+  else
+    compinit -C
+  fi
+
+  # Case-insensitive completion
+  zstyle ':completion*' matcher-list 'm:{a-z}={A-Za-z}'
+
+  # Load plugins
+  . "${plugdir}/zsh-fzf/fzf-zsh-plugin.plugin.zsh"
+  . "${plugdir}/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  . "${plugdir}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+}
+
+zsh-defer deferred_init
+unset deferred_init
 
 ###############################################################################
 # Re-Bindings and Shortcuts                                                   #
