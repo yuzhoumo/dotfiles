@@ -80,7 +80,7 @@ fi
 # OS Specific                                                                 #
 ###############################################################################
 
-if [ $(uname -s) = 'Darwin' ]; then
+if [[ "$OSTYPE" == darwin* ]]; then
 
   # Set pnpm home
   export PNPM_HOME="/Users/${USER}/Library/pnpm"
@@ -95,7 +95,8 @@ if [ $(uname -s) = 'Darwin' ]; then
   export HOMEBREW_CASK_OPTS=--require-s
 
   # Add Homebrew to path
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  # Note: move the output of this command to extra.zsh to improve startup time
+  # eval "$(/opt/homebrew/bin/brew shellenv)"
 
   # Use GNU find instead of macos
   PATH=/opt/homebrew/opt/findutils/libexec/gnubin:$PATH
