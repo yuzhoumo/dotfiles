@@ -6,7 +6,7 @@
 [ -e "${HOME}/.config/zsh/extra.zsh" ] && . "${HOME}/.config/zsh/extra.zsh"
 
 ###############################################################################
-# Exports                                                                     #
+# XDG Base Directory Exports                                                  #
 ###############################################################################
 
 # Explicitly define default XDG paths
@@ -19,6 +19,52 @@ export XDG_STATE_HOME="${HOME}/.local/state"
 export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
 export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible.cfg"
 export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
+
+# Set npm config location
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
+
+# Set python history file to ~/.cache
+export PYTHON_HISTORY="${XDG_CACHE_HOME}/python_history"
+
+# Write `less` history file to ~/.cache
+export LESSHISTFILE="${XDG_CACHE_HOME}/lesshst"
+
+# Set zsh history file to ~/.cache
+export HISTFILE="${XDG_CACHE_HOME}/zsh_history"
+
+# Set node repl history file to ~/.cache
+export NODE_REPL_HISTORY="${XDG_CACHE_HOME}/node_repl_history"
+
+# Set gem/bundle install location
+export GEM_HOME="${XDG_DATA_HOME}/gem"
+export BUNDLE_USER_HOME="${XDG_CONFIG_DATA}/bundle"
+
+# Set nvm install location
+export NVM_DIR="${XDG_DATA_HOME}/nvm"
+
+# Set fzf install location
+export FZF_PATH="${XDG_DATA_HOME}/fzf"
+
+# Set go location
+export GOPATH="${XDG_DATA_HOME}/go"
+
+# Set gpg location
+export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
+
+# Set docker location
+export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
+
+# Set PATH so it includes user's private bin if it exists
+if [ -d "${HOME}/.local/bin" ] && [[ ":${PATH}:" != *":${HOME}/.local/bin:"* ]]; then
+    export PATH="${HOME}/.local/bin:${PATH}"
+fi
+
+# Add zsh-fzf to bin
+export PATH="${XDG_CONFIG_HOME}/zsh/plugins/zsh-fzf/bin:${PATH}"
+
+###############################################################################
+# Other Exports                                                               #
+###############################################################################
 
 # Set term env var for kitty
 export TERM=xterm-256color
@@ -38,45 +84,6 @@ export LESS_TERMCAP_md="${yellow}"
 
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr
 export PYTHONIOENCODING="UTF-8"
-
-# Set python history file to ~/.cache
-export PYTHON_HISTORY="${HOME}/.cache/python_history"
-
-# Write `less` history file to ~/.cache
-export LESSHISTFILE="${HOME}/.cache/lesshst"
-
-# Set zsh history file to ~/.cache
-export HISTFILE="${HOME}/.cache/zsh_history"
-
-# Set node repl history file to ~/.cache
-export NODE_REPL_HISTORY="${HOME}/.cache/node_repl_history"
-
-# Set gem/bundle install locaion
-export GEM_HOME="${HOME}/.local/share/gem"
-export BUNDLE_USER_HOME="${HOME}/.local/share/bundle"
-
-# Set nvm install location
-export NVM_DIR="${HOME}/.local/share/nvm"
-
-# Set fzf install location
-export FZF_PATH="${HOME}/.local/share/fzf"
-
-# Set go location
-export GOPATH="${HOME}/.local/share/go"
-
-# Set gpg location
-export GNUPGHOME="${HOME}/.local/share/gnupg"
-
-# Set docker location
-export DOCKER_CONFIG="${HOME}/.config/docker"
-
-# Set PATH so it includes user's private bin if it exists
-if [ -d "${HOME}/.local/bin" ] && [[ ":${PATH}:" != *":${HOME}/.local/bin:"* ]]; then
-    export PATH="${HOME}/.local/bin:${PATH}"
-fi
-
-# Add zsh-fzf to bin
-export PATH="${HOME}/.config/zsh/plugins/zsh-fzf/bin:${PATH}"
 
 ###############################################################################
 # Terminal Specific                                                           #

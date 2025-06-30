@@ -49,3 +49,7 @@ mkdir -p "${HOME}/.config/nvim/" && \
 # tmux config
 mkdir -p "${HOME}/.config/tmux/" && \
   cp -r tmux/. "${HOME}/.config/tmux/."
+
+# npm config
+mkdir -p "${HOME}/.config/npm/" && \
+  cp -r npm/. "${HOME}/.config/npm/."
