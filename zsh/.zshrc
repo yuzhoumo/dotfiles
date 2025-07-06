@@ -136,6 +136,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
   # Get local ip address
   alias locip="ipconfig getifaddr en0"
 
+  # Upgrade homebrew and neovim
+  alias upgrade="nvim --headless \"+Lazy! sync\" +qa && brew update && brew upgrade"
+
 elif grep -q microsoft /proc/version; then
 
   # Retrieve Windows username and remove \r carriage return
