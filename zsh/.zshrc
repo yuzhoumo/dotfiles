@@ -106,13 +106,6 @@ fi
 
 if [[ "$OSTYPE" == darwin* ]]; then
 
-  # Set pnpm home
-  export PNPM_HOME="/Users/${USER}/Library/pnpm"
-  case ":$PATH:" in
-    *":$PNPM_HOME:"*) ;;
-    *) export PATH="$PNPM_HOME:$PATH" ;;
-  esac
-
   # Homebrew security and privacy settings
   export HOMEBREW_NO_ANALYTICS=1
   export HOMEBREW_NO_INSECURE_REDIRECT=1
