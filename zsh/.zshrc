@@ -20,24 +20,24 @@ export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
 export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible.cfg"
 export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
 
-# Set npm config location
+# Set history files
+export HISTFILE="${XDG_CACHE_HOME}/zsh_history"
+export LESSHISTFILE="${XDG_CACHE_HOME}/lesshst"
+export NODE_REPL_HISTORY="${XDG_CACHE_HOME}/node_repl_history"
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
-
-# Set python history file to ~/.cache
 export PYTHON_HISTORY="${XDG_CACHE_HOME}/python_history"
 
-# Write `less` history file to ~/.cache
-export LESSHISTFILE="${XDG_CACHE_HOME}/lesshst"
+# Redis CLI
+export REDISCLI_HISTFILE="${XDG_CACHE_HOME}/redis/rediscli_history"
+export REDISCLI_RCFILE="$XDG_CONFIG_HOME"/redis/redisclirc
 
-# Set zsh history file to ~/.cache
-export HISTFILE="${XDG_CACHE_HOME}/zsh_history"
-
-# Set node repl history file to ~/.cache
-export NODE_REPL_HISTORY="${XDG_CACHE_HOME}/node_repl_history"
-
-# Set gem/bundle install location
+# Ruby gem/bundle
 export GEM_HOME="${XDG_DATA_HOME}/gem"
 export BUNDLE_USER_HOME="${XDG_CONFIG_DATA}/bundle"
+
+# Wget config and hsts file
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+alias wget="wget --hsts-file=\"${XDG_CACHE_HOME}/wget-hsts\""
 
 # Set nvm install location
 export NVM_DIR="${XDG_DATA_HOME}/nvm"
@@ -45,8 +45,8 @@ export NVM_DIR="${XDG_DATA_HOME}/nvm"
 # Set fzf install location
 export FZF_PATH="${XDG_DATA_HOME}/fzf"
 
-# Set go location
-export GOPATH="${XDG_DATA_HOME}/go"
+# Set ollama models directory
+export OLLAMA_MODELS="${XDG_DATA_HOME}/ollama/models"
 
 # Set gpg location
 export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
@@ -54,17 +54,23 @@ export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
 # Set docker location
 export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
 
-# Set PATH so it includes user's private bin if it exists
-if [ -d "${HOME}/.local/bin" ] && [[ ":${PATH}:" != *":${HOME}/.local/bin:"* ]]; then
-    export PATH="${HOME}/.local/bin:${PATH}"
-fi
+# Add go bin to path
+export PATH="${PATH}:${XDG_DATA_HOME}/go/bin"
 
-# Add zsh-fzf to bin
+# Add zsh-fzf bin to path
 export PATH="${XDG_CONFIG_HOME}/zsh/plugins/zsh-fzf/bin:${PATH}"
+
+# postgres
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 
 ###############################################################################
 # Other Exports                                                               #
 ###############################################################################
+
+# Set PATH so it includes user's private bin if it exists
+if [ -d "${HOME}/.local/bin" ] && [[ ":${PATH}:" != *":${HOME}/.local/bin:"* ]]; then
+    export PATH="${HOME}/.local/bin:${PATH}"
+fi
 
 # Set term env var for kitty
 export TERM=xterm-256color

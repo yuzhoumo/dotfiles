@@ -1,0 +1,5 @@
+" Use XDG_STATE_HOME for viminfo
+if empty($XDG_STATE_HOME)
+  let $XDG_STATE_HOME = expand('~/.local/state')
+endif
+set viminfofile=$XDG_STATE_HOME/vim/viminfo
