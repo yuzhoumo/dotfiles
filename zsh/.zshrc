@@ -31,6 +31,11 @@ export PYTHON_HISTORY="${XDG_CACHE_HOME}/python_history"
 export REDISCLI_HISTFILE="${XDG_CACHE_HOME}/redis/rediscli_history"
 export REDISCLI_RCFILE="$XDG_CONFIG_HOME"/redis/redisclirc
 
+# Go path
+export GOPATH="${XDG_DATA_HOME}/go"
+export GOMODCACHE="${XDG_CACHE_HOME}/go/mod"
+export PATH="${PATH}:${XDG_DATA_HOME}/go/bin"
+
 # Ruby gem/bundle
 export GEM_HOME="${XDG_DATA_HOME}/gem"
 export BUNDLE_USER_HOME="${XDG_CONFIG_DATA}/bundle"
@@ -53,9 +58,6 @@ export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
 
 # Set docker location
 export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
-
-# Add go bin to path
-export PATH="${PATH}:${XDG_DATA_HOME}/go/bin"
 
 # Add zsh-fzf bin to path
 export PATH="${XDG_CONFIG_HOME}/zsh/plugins/zsh-fzf/bin:${PATH}"
