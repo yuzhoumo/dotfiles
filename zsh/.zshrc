@@ -40,6 +40,9 @@ export PATH="${PATH}:${XDG_DATA_HOME}/go/bin"
 export GEM_HOME="${XDG_DATA_HOME}/gem"
 export BUNDLE_USER_HOME="${XDG_CONFIG_DATA}/bundle"
 
+# Local Kubernetes config location
+export KUBECONFIG="${XDG_CONFIG_HOME}/kube/config"
+
 # Wget config and hsts file
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 alias wget="wget --hsts-file=\"${XDG_CACHE_HOME}/wget-hsts\""
