@@ -6,6 +6,7 @@ return {
       "bash",
       "bicep",
       "c",
+      "c_sharp",
       "cpp",
       "css",
       "glsl",
