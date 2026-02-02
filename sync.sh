@@ -57,3 +57,7 @@ mkdir -p "${HOME}/.config/tmux/" && \
 # npm config
 mkdir -p "${HOME}/.config/npm/" && \
   cp -r npm/. "${HOME}/.config/npm/."
+
+# wget config
+mkdir -p "${HOME}/.config/wget/" && \
+  cp -r wget/. "${HOME}/.config/wget/."
