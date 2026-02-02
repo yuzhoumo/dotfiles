@@ -13,6 +13,7 @@ return {
       autotag = { enable = true },
       ensure_installed = {
         "bash",
+        "bicep",
         "c",
         "cpp",
         "css",

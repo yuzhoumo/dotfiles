@@ -40,7 +40,7 @@ return {
         "lua_ls",
         "pyright",
         "rust_analyzer",
-        "tsserver",
+        "ts_ls",
       },
       handlers = {
         lsp_zero.default_setup,
