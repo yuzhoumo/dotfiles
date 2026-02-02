@@ -41,20 +41,6 @@ vim.api.nvim_create_autocmd({"UIEnter", "Colorscheme"}, {
   end,
 })
 
--- enable treesitter-based highlighting for all supported filetypes
-vim.api.nvim_create_autocmd("FileType", {
-  callback = function()
-    pcall(vim.treesitter.start)
-  end,
-})
-
--- enable treesitter-based indentation
-vim.api.nvim_create_autocmd("FileType", {
-  callback = function()
-    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-  end,
-})
-
 -- disable resource-intensive features on minified files
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
   callback = function()
