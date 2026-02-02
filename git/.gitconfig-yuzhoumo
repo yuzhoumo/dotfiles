@@ -2,5 +2,8 @@
   name = Joe Mo
   email = 49494600+yuzhoumo@users.noreply.github.com
 
+[core]
+  sshCommand = ssh -i ~/.ssh/yuzhoumo_ed25519 -o IdentitiesOnly=yes
+
 [init]
   defaultBranch = main

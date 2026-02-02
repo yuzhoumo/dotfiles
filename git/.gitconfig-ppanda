@@ -2,5 +2,8 @@
   name = PerpetualPanda
   email = 97649174+PerpetualPanda@users.noreply.github.com
 
+[core]
+  sshCommand = ssh -i ~/.ssh/ppanda_ed25519 -o IdentitiesOnly=yes
+
 [init]
   defaultbranch = main
