@@ -17,17 +17,17 @@ return {
     dependencies = { "williamboman/mason.nvim" },
     opts = {
       ensure_installed = {
-        "bashls",
+        "bash-language-server",
         "clangd",
-        "cssls",
+        "css-lsp",
         "gopls",
-        "html",
+        "html-lsp",
         "jdtls",
-        "lua_ls",
+        "lua-language-server",
         "pyright",
         "roslyn",
-        "rust_analyzer",
-        "ts_ls",
+        "rust-analyzer",
+        "typescript-language-server",
       },
     },
   },
@@ -74,19 +74,31 @@ return {
       "williamboman/mason.nvim",
     },
     config = function()
+      -- configure diagnostic floating window
+      vim.diagnostic.config({
+        jump = { float = true },
+        float = {
+          border = "rounded",
+          source = true,
+          header = "",
+          prefix = "",
+        },
+      })
+
       -- enable all configured lsp servers (configs in nvim/lsp/*.lua)
       -- roslyn is handled by roslyn.nvim plugin
       vim.lsp.enable({
-        "bashls",
+        "bash-language-server",
         "clangd",
-        "cssls",
+        "css_lsp",
         "gopls",
-        "html",
+        "html_lsp",
         "jdtls",
-        "lua_ls",
+        "lua_language_server",
         "pyright",
+        "roslyn",
         "rust_analyzer",
-        "ts_ls",
+        "typescript_language_server",
       })
 
       -- set lsp keymaps when a language server attaches to a buffer
@@ -95,18 +107,19 @@ return {
           local opts = { buffer = args.buf, remap = false }
 
           vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-          vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+          vim.keymap.set("n", "K", function()
+            vim.lsp.buf.hover({ border = "rounded" })
+          end, opts)
           vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
           vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
           vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
           vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
           vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
-          vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+          vim.keymap.set("i", "<C-h>", function()
+            vim.lsp.buf.signature_help({ border = "rounded" })
+          end, opts)
         end,
       })
-
-      -- show diagnostics in floating window when jumping with [d and ]d
-      vim.diagnostic.config({ jump = { float = true } })
     end,
   },
   {
@@ -129,6 +142,10 @@ return {
           expand = function(args)
             require("luasnip").lsp_expand(args.body)
           end,
+        },
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-k>"] = cmp.mapping.select_prev_item(),
