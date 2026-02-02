@@ -3,12 +3,16 @@
   path = ~/.config/git/.gitconfig-yuzhoumo
 [includeIf "gitdir:~/Code/ppanda/"]
   path = ~/.config/git/.gitconfig-ppanda
+[includeIf "gitdir:~/Code/work/"]
+  path = ~/.config/git/.gitconfig-work
 
 # WSL
 [includeIf "gitdir:~/code/yuzhoumo/"]
   path = ~/.config/git/.gitconfig-yuzhoumo
 [includeIf "gitdir:~/code/ppanda/"]
   path = ~/.config/git/.gitconfig-ppanda
+[includeIf "gitdir:~/code/work/"]
+  path = ~/.config/git/.gitconfig-work
 
 [core]
   editor = nvim

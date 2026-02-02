@@ -1,0 +1,11 @@
+[user]
+  email = joemo@microsoft.com
+  name = Joe Mo
+
+[credential]
+  azreposCredentialType = oauth
+  helper = /usr/local/bin/git-credential-manager
+  useHttpPath = true
+
+[init]
+  defaultBranch = main
