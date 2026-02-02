@@ -3,29 +3,68 @@ return {
     "williamboman/mason.nvim",
     lazy = false,
     config = function()
-      require("mason").setup()
+      require("mason").setup({
+        registries = {
+          "github:mason-org/mason-registry",
+          "github:Crashdummyy/mason-registry", -- contains roslyn lsp
+        },
+      })
     end,
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     lazy = false,
     dependencies = { "williamboman/mason.nvim" },
-    config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "bashls",
-          "clangd",
-          "cssls",
-          "gopls",
-          "html",
-          "jdtls",
-          "lua_ls",
-          "omnisharp",
-          "pyright",
-          "rust_analyzer",
-          "ts_ls",
+    opts = {
+      ensure_installed = {
+        "bashls",
+        "clangd",
+        "cssls",
+        "gopls",
+        "html",
+        "jdtls",
+        "lua_ls",
+        "pyright",
+        "roslyn",
+        "rust_analyzer",
+        "ts_ls",
+      },
+    },
+  },
+  {
+    "seblyng/roslyn.nvim",
+    ft = { "cs", "razor" },
+    dependencies = { "williamboman/mason.nvim" },
+    opts = {},
+    config = function(_, opts)
+      -- configure roslyn lsp settings via vim.lsp.config
+      vim.lsp.config("roslyn", {
+        settings = {
+          ["csharp|inlay_hints"] = {
+            csharp_enable_inlay_hints_for_implicit_object_creation = true,
+            csharp_enable_inlay_hints_for_implicit_variable_types = true,
+            csharp_enable_inlay_hints_for_lambda_parameter_types = true,
+            csharp_enable_inlay_hints_for_types = true,
+            dotnet_enable_inlay_hints_for_indexer_parameters = true,
+            dotnet_enable_inlay_hints_for_literal_parameters = true,
+            dotnet_enable_inlay_hints_for_object_creation_parameters = true,
+            dotnet_enable_inlay_hints_for_other_parameters = true,
+            dotnet_enable_inlay_hints_for_parameters = true,
+          },
+          ["csharp|code_lens"] = {
+            dotnet_enable_references_code_lens = true,
+          },
+          ["csharp|completion"] = {
+            dotnet_show_completion_items_from_unimported_namespaces = true,
+            dotnet_show_name_completion_suggestions = true,
+          },
+          ["csharp|background_analysis"] = {
+            dotnet_analyzer_diagnostics_scope = "fullSolution",
+            dotnet_compiler_diagnostics_scope = "fullSolution",
+          },
         },
       })
+      require("roslyn").setup(opts)
     end,
   },
   {
@@ -33,10 +72,10 @@ return {
     lazy = false,
     dependencies = {
       "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
     },
     config = function()
       -- enable all configured lsp servers (configs in nvim/lsp/*.lua)
+      -- roslyn is handled by roslyn.nvim plugin
       vim.lsp.enable({
         "bashls",
         "clangd",
@@ -45,7 +84,6 @@ return {
         "html",
         "jdtls",
         "lua_ls",
-        "omnisharp",
         "pyright",
         "rust_analyzer",
         "ts_ls",
