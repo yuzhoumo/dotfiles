@@ -292,6 +292,7 @@ alias desk="cd ${DESKTOP_DIR}"
 # Code directory shortcuts
 alias yuz="cd ${CODE_DIR}/yuzhoumo"
 alias pan="cd ${CODE_DIR}/ppanda"
+alias work="cd ${CODE_DIR}/work"
 alias con="cd ${CODE_DIR}/yuzhoumo/configs"
 alias dot="cd ${CODE_DIR}/yuzhoumo/dotfiles"
 alias syncdot="${CODE_DIR}/yuzhoumo/dotfiles/sync.sh && reload"
