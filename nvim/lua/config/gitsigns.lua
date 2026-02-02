@@ -11,6 +11,9 @@ return {
         topdelete = { text = "‾" },
         changedelete = { text = "~" },
       },
+      diff_opts = {
+        internal = false,  -- Use external diff (git diff) instead of internal
+      },
     }
   end
 }
