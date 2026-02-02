@@ -11,6 +11,7 @@ return {
       "css",
       "glsl",
       "go",
+      "hjson",
       "html",
       "java",
       "javascript",
