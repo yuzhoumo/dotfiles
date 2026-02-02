@@ -190,6 +190,21 @@ fi
 # Plugins & Tweaks                                                            #
 ###############################################################################
 
+lazy_load_nvm() {
+  unset -f node nvm
+  [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+}
+
+node() {
+  lazy_load_nvm
+  node $@
+}
+
+nvm() {
+  lazy_load_nvm
+  nvm $@
+}
+
 # Define plugin directory
 plugdir="${HOME}/.config/zsh/plugins"
 
