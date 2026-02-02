@@ -5,25 +5,6 @@ vim.api.nvim_create_augroup("misc", { clear = true })
 vim.api.nvim_create_augroup("lightweight_mode", { clear = true })
 vim.api.nvim_create_augroup('kitty_cursor', { clear = true })
 
--- disable resource-intensive features on minified files
-vim.api.nvim_create_autocmd({ "BufReadPost" }, {
-  callback = function()
-    vim.b.has_long_line = buf_has_long_line()
-    if vim.b.has_long_line then
-      print("Minified file detected: Entering lightweight mode")
-
-      vim.cmd("TSBufDisable highlight")
-      vim.cmd("TSBufDisable indent")
-      vim.cmd("TSBufDisable autotag")
-
-      vim.opt_local.cursorline = false
-      vim.opt_local.spell = false
-    end
-  end,
-  group = "lightweight_mode",
-  pattern = "*",
-})
-
 -- deferred to prevent "sytax off" from being overridden
 vim.api.nvim_create_autocmd({ "UIEnter", "BufEnter" }, {
   callback = function()
@@ -51,11 +32,44 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
 })
 
--- Fix issue where cursor color doesn't change in kitty
+-- fix issue where cursor color doesn't change in kitty
 -- https://github.com/neovim/neovim/issues/12626
 vim.api.nvim_create_autocmd({"UIEnter", "Colorscheme"}, {
   group = "kitty_cursor",
   callback = function()
     vim.opt.guicursor = "n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor"
   end,
+})
+
+-- enable treesitter-based highlighting for all supported filetypes
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function()
+    pcall(vim.treesitter.start)
+  end,
+})
+
+-- enable treesitter-based indentation
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function()
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end,
+})
+
+-- disable resource-intensive features on minified files
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+  callback = function()
+    vim.b.has_long_line = buf_has_long_line()
+    if vim.b.has_long_line then
+      print("Minified file detected: Entering lightweight mode")
+
+      vim.cmd("TSBufDisable highlight")
+      vim.cmd("TSBufDisable indent")
+      vim.cmd("TSBufDisable autotag")
+
+      vim.opt_local.cursorline = false
+      vim.opt_local.spell = false
+    end
+  end,
+  group = "lightweight_mode",
+  pattern = "*",
 })
