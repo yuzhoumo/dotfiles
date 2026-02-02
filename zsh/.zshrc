@@ -31,9 +31,9 @@ export PYTHON_HISTORY="${XDG_CACHE_HOME}/python_history"
 export REDISCLI_HISTFILE="${XDG_CACHE_HOME}/redis/rediscli_history"
 export REDISCLI_RCFILE="$XDG_CONFIG_HOME"/redis/redisclirc
 
-# Go path
-export GOPATH="${XDG_DATA_HOME}/go"
-export GOMODCACHE="${XDG_CACHE_HOME}/go/mod"
+# Go path (must be different dir from go installation)
+export GOPATH="${XDG_DATA_HOME}/gopath"
+export GOMODCACHE="${XDG_CACHE_HOME}/gopath/mod"
 export PATH="${PATH}:${XDG_DATA_HOME}/go/bin"
 
 # Ruby gem/bundle
@@ -43,9 +43,9 @@ export BUNDLE_USER_HOME="${XDG_CONFIG_DATA}/bundle"
 # Local Kubernetes config location
 export KUBECONFIG="${XDG_CONFIG_HOME}/kube/config"
 
-# Wget config and hsts file
-export WGETRC="$XDG_CONFIG_HOME/wgetrc"
-alias wget="wget --hsts-file=\"${XDG_CACHE_HOME}/wget-hsts\""
+# wget config and hsts file
+export WGETRC="${XDG_CONFIG_HOME}/wget/wgetrc"
+alias wget="wget --hsts-file=\"${XDG_CACHE_HOME}/wget/hsts\""
 
 # Set nvm install location
 export NVM_DIR="${XDG_DATA_HOME}/nvm"
