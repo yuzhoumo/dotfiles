@@ -131,14 +131,14 @@
     "on-click-right": "pamixer -t",
     "tooltip-format": "Volume: {volume}%",
     "scroll-step": 5,
-    "format-muted": "",
+    "format-muted": "󰝟",
     "format-icons": {
-      "headphone": "",
-      "headset": "",
+      "headphone": "󰋋",
+      "headset": "󰋎",
       "default": [
-        "",
-        "",
-        ""
+        "󰕿",
+        "󰖀",
+        "󰕾"
       ]
     }
   },
