@@ -1,4 +1,4 @@
-@import "/etc/xdg/rofi/catppuccin-mocha"
+@import "./catppuccin-mocha"
 
 * {
   selected-active-foreground:  @background;
