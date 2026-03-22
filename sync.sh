@@ -25,6 +25,26 @@ else # macOS and Linux
     cp -r ghostty/. "${HOME}/.config/ghostty/."
 fi
 
+# desktop linux (wayland)
+if [ -n "${WAYLAND_DISPLAY}" ]; then
+  # hyprland config
+  mkdir -p "${HOME}/.config/hypr" && \
+    cp -r hyprland/. "${HOME}/.config/hypr/."
+
+  # mako config
+  mkdir -p "${HOME}/.config/mako" && \
+    cp -r mako/. "${HOME}/.config/mako/."
+
+  # rofi config
+  mkdir -p "${HOME}/.config/rofi" && \
+    cp -r rofi/. "${HOME}/.config/rofi/."
+
+  # waybar config
+  rm -rf "${HOME}/.config/waybar" && \
+    mkdir -p "${HOME}/.config/waybar" && \
+    cp -r waybar/. "${HOME}/.config/waybar/."
+fi
+
 # note: period after trailing slash is significant to ensure consistent
 # behavior between both BSD and GNU implementations of "cp" (eg. macOS vs
 # Linux respectively); https://ackshaey.medium.com/835c0b608339
