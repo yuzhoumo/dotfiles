@@ -27,9 +27,10 @@ fi
 
 # desktop linux (wayland)
 if [ -n "${WAYLAND_DISPLAY}" ]; then
-  # hyprland config
+  # hyprland config. copy default monitors.conf if it does not already exist
   mkdir -p "${HOME}/.config/hypr" && \
-    cp -r hyprland/. "${HOME}/.config/hypr/."
+    find hyprland -type f ! -name 'monitors.conf' -exec cp {} "${HOME}/.config/hypr/." \; && \
+    cp -n hyprland/monitors.conf "${HOME}/.config/hypr/."
 
   # mako config
   mkdir -p "${HOME}/.config/mako" && \
