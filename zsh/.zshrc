@@ -38,7 +38,9 @@ export PATH="${PATH}:${XDG_DATA_HOME}/go/bin"
 
 # Ruby gem/bundle
 export GEM_HOME="${XDG_DATA_HOME}/gem"
-export BUNDLE_USER_HOME="${XDG_CONFIG_DATA}/bundle"
+export BUNDLE_USER_CACHE="${XDG_CACHE_HOME}/bundle"
+export BUNDLE_USER_CONFIG="${XDG_CONFIG_HOME}/bundle/config"
+export BUNDLE_USER_PLUGIN="${XDG_DATA_HOME}/bundle"
 
 # Local Kubernetes config location
 export KUBECONFIG="${XDG_CONFIG_HOME}/kube/config"
@@ -65,8 +67,14 @@ export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
 # Add zsh-fzf bin to path
 export PATH="${XDG_CONFIG_HOME}/zsh/plugins/zsh-fzf/bin:${PATH}"
 
-# postgres
-export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+# GTK 2 (prevents ~/.gtkrc-2.0)
+export GTK2_RC_FILES="${XDG_CONFIG_HOME}/gtk-2.0/gtkrc"
+
+# Bitwarden SSH agent socket (prevents ~/.bitwarden-ssh-agent.sock)
+export BITWARDEN_SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}"
+
+# Claude code
+export CLAUDE_CONFIG_DIR="${XDG_DATA_HOME}/claude"
 
 ###############################################################################
 # Other Exports                                                               #
@@ -121,7 +129,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
   # eval "$(/opt/homebrew/bin/brew shellenv)"
 
   # Use GNU find instead of macos
-  PATH=/opt/homebrew/opt/findutils/libexec/gnubin:$PATH
+  export PATH=/opt/homebrew/opt/findutils/libexec/gnubin:$PATH
+
+  # PostgreSQL
+  export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 
   # Avoid issues with `gpg` as installed via Homebrew.
   # https://stackoverflow.com/a/42265848/96656
