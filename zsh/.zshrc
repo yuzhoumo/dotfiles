@@ -34,7 +34,7 @@ export REDISCLI_RCFILE="$XDG_CONFIG_HOME"/redis/redisclirc
 # Go path (must be different dir from go installation)
 export GOPATH="${XDG_DATA_HOME}/gopath"
 export GOMODCACHE="${XDG_CACHE_HOME}/gopath/mod"
-export PATH="${PATH}:${XDG_DATA_HOME}/go/bin"
+export PATH="${PATH}:${XDG_DATA_HOME}/gopath/bin"
 
 # Ruby gem/bundle
 export GEM_HOME="${XDG_DATA_HOME}/gem"
