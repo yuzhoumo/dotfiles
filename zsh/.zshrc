@@ -24,12 +24,14 @@ export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
 export HISTFILE="${XDG_CACHE_HOME}/zsh_history"
 export LESSHISTFILE="${XDG_CACHE_HOME}/lesshst"
 export NODE_REPL_HISTORY="${XDG_CACHE_HOME}/node_repl_history"
-export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 export PYTHON_HISTORY="${XDG_CACHE_HOME}/python_history"
 
 # Redis CLI
 export REDISCLI_HISTFILE="${XDG_CACHE_HOME}/redis/rediscli_history"
-export REDISCLI_RCFILE="$XDG_CONFIG_HOME"/redis/redisclirc
+export REDISCLI_RCFILE="${XDG_CONFIG_HOME}/redis/redisclirc"
+
+# Azure
+export AZURE_CONFIG_DIR="${XDG_DATA_HOME}/azure"
 
 # Go path (must be different dir from go installation)
 export GOPATH="${XDG_DATA_HOME}/gopath"
@@ -42,8 +44,23 @@ export BUNDLE_USER_CACHE="${XDG_CACHE_HOME}/bundle"
 export BUNDLE_USER_CONFIG="${XDG_CONFIG_HOME}/bundle/config"
 export BUNDLE_USER_PLUGIN="${XDG_DATA_HOME}/bundle"
 
+# Rust settings
+export CARGO_HOME="${XDG_DATA_HOME}/cargo"
+export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
+
+# Node settings
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
+
 # Local Kubernetes config location
 export KUBECONFIG="${XDG_CONFIG_HOME}/kube/config"
+export KUBECACHEDIR="${XDG_CACHE_HOME}/kube"
+
+# Local minikube config location
+export MINIKUBE_HOME="${XDG_DATA_HOME}/minikube"
+
+# mitmproxy rebindings
+alias mitmproxy="mitmproxy --set confdir=${XDG_CONFIG_HOME}/mitmproxy"
+alias mitmweb="mitmweb --set confdir=${XDG_CONFIG_HOME}/mitmproxy"
 
 # wget config and hsts file
 export WGETRC="${XDG_CONFIG_HOME}/wget/wgetrc"
