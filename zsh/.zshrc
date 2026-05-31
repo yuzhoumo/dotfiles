@@ -93,6 +93,9 @@ export GTK2_RC_FILES="${XDG_CONFIG_HOME}/gtk-2.0/gtkrc"
 # Bitwarden SSH agent socket (prevents ~/.bitwarden-ssh-agent.sock)
 export BITWARDEN_SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}"
 
+# GitHub Copilot CLI home
+export COPILOT_HOME="${XDG_DATA_HOME}/copilot"
+
 # Claude code
 export CLAUDE_CONFIG_DIR="${XDG_DATA_HOME}/claude"
 
